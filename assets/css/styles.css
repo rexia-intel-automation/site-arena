@@ -1,3 +1,9 @@
+Segue o CSS completo já ajustado para:
+
+* `float-card` sempre acima de tudo (z-index alto).
+* Sobreposição máxima de **20px** para dentro do `stadium-card` (usando `translateX(calc(-100% + 20px))` em todos os frames da animação).
+
+```css
 /* ===================================
    Arena BRB Mané Garrincha - Styles
    =================================== */
@@ -530,7 +536,7 @@ body.light-mode .stat-label {
     backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
     border-radius: 14px;
-    padding: 14px 18px;
+    padding: 14px 4px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -552,7 +558,7 @@ body.light-mode .float-card {
 }
 
 .float-card-2 {
-    top: 132px; /* 40px + ~72px altura do card 1 + 20px de espaçamento */
+    top: 180px; /* 40px + ~72px altura do card 1 + 20px de espaçamento */
     animation-delay: 2s;
 }
 
