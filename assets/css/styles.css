@@ -207,6 +207,7 @@ body.light-mode .logo-light { display: block; }
 }
 
 /* Hero Visual – Responsivo + Stacking Context Blindado */
+/* Hero Visual – AGORA RESPONSIVO DE VERDADE */
 .hero-visual {
   position: absolute;
   right: 60px;
@@ -214,9 +215,38 @@ body.light-mode .logo-light { display: block; }
   transform: translateY(-50%);
   width: clamp(360px, 42vw, 480px);
   z-index: 1;
-  isolation: isolate;                    /* contexto isolado */
+  isolation: isolate;
   pointer-events: none;
-  transition: all .6s cubic-bezier(.16,1,.3,1);
+  transition: all .8s cubic-bezier(.16,1,.3,1);   /* ← troquei de .6s para .8s */
+}
+
+/* Posição padrão dos floating cards (desktop grande) */
+.float-card-1 { top: 32px; }
+.float-card-2 { top: 112px; animation-delay: 1.8s; }
+
+/* Tablet e mobile ≤ 1200px – card vai pro centro e floating cards ficam juntos acima do título */
+@media (max-width: 1200px) {
+  .hero-visual {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 90px auto 0 !important;
+    width: min(440px, 92vw);
+  }
+
+  .float-card {
+    left: 0 !important;
+    transform: translateX(calc(-100% + 20px)) !important;
+  }
+
+  .float-card-1 { top: -36px !important; }
+  .float-card-2 { top: 44px !important; }   /* 40px abaixo do primeiro */
+}
+
+@media (max-width: 768px) {
+  .hero-visual { display: none !important; }
 }
 
 .stadium-card {
@@ -332,9 +362,12 @@ body.light-mode .float-card {
 }
 
 @media (max-width: 768px) {
-  .hero-visual { display: none; }
+  .hero-visual { display: none !important; }
   .hero, section { padding: 100px 24px; }
-  .hero { padding-top: 140px; }
+  .hero { 
+    padding-top: 160px;     /* ← nova linha */
+    padding-bottom: 100px;  /* opcional, mas fica mais respirado */
+  }
 }
 
 /* ===================================
@@ -345,7 +378,7 @@ body.light-mode .float-card {
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -2px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;   /* ← era 24px, agora 32px */
 }
 
 .hero h1 .gradient {
