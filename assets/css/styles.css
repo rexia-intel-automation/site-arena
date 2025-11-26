@@ -539,13 +539,13 @@ body.light-mode .float-card {
 }
 
 .float-card-1 {
-    right: 200px;
+    left: -50px;
     top: 40px;
 }
 
 .float-card-2 {
-    right: 220px;
-    bottom: 60px;
+    left: -50px;
+    bottom: 120px;
     animation-delay: 2s;
 }
 
