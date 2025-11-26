@@ -222,6 +222,7 @@ body.light-mode .logo-light { display: block; }
 
 /* Posição final dos floating cards */
 .float-card-1 { top: 32px; }
+.float-card-2 { top: 120px; animation-delay: 2s; } /* 20px abaixo do card 1 (32px + ~68px altura + 20px) */
 
 /* Tablet e mobile ≤ 1200px – card vai pro centro e floating cards ficam juntos acima do título */
 @media (max-width: 1200px) {
@@ -242,10 +243,6 @@ body.light-mode .logo-light { display: block; }
 
   .float-card-1 { top: -36px !important; }
   .float-card-2 { top: 52px !important; }   /* 20px abaixo do primeiro (-36px + ~68px + 20px) */
-}
-
-@media (max-width: 768px) {
-  .hero-visual { display: none !important; }
 }
 
 .stadium-card {
@@ -304,9 +301,6 @@ body.light-mode .float-card {
   box-shadow: 0 12px 32px rgba(0, 71, 187, 0.12);
 }
 
-.float-card-1 { top: 32px; }
-.float-card-2 { top: 120px; animation-delay: 2s; } /* 20px abaixo do card 1 (32px + ~68px altura + 20px) */
-
 @keyframes float {
   0%,100% { transform: translate(calc(-100% + 20px), 0); }
   50%     { transform: translate(calc(-100% + 20px), -12px); }
@@ -335,37 +329,12 @@ body.light-mode .float-card {
   .hero-visual { width: 420px; right: 40px; }
 }
 
-@media (max-width: 1200px) {
-  .hero-visual {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    margin: 90px auto 0;
-    width: min(440px, 92vw);
-  }
-
-  /* Cards flutuantes ficam na esquerda, um em cima do outro, acima do título */
-  .float-card {
-    left: 0;                                    /* volta para a esquerda */
-    transform: translateX(calc(-100% + 20px);     /* mesma invasão de 20 px do desktop */
-  }
-
-  .float-card-1 {
-    top: -36px;                                 /* aparece acima do card */
-  }
-
-  .float-card-2 {
-    top: 44px;                                  /* -36px + 80px de altura do card 1 + 40px de distância desejada */
-  }
-}
-
 @media (max-width: 768px) {
   .hero-visual { display: none !important; }
   .hero, section { padding: 100px 24px; }
-  .hero { 
-    padding-top: 160px;     /* ← nova linha */
-    padding-bottom: 100px;  /* opcional, mas fica mais respirado */
+  .hero {
+    padding-top: 160px;
+    padding-bottom: 100px;
   }
 }
 
