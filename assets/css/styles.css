@@ -507,7 +507,7 @@ body.light-mode .stat-label {
     color: rgba(15, 23, 42, 0.5);
 }
 
-/* Float Cards (camada 2 - acima do fundo, abaixo do conteúdo) */
+/* Float Cards (camada 4 - primeiro plano, acima de tudo) */
 .float-card {
     position: absolute;
     background: var(--glass);
@@ -520,7 +520,7 @@ body.light-mode .stat-label {
     gap: 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     animation: float 5s ease-in-out infinite;
-    z-index: 2;
+    z-index: 4;
 }
 
 body.light-mode .float-card {
@@ -539,12 +539,12 @@ body.light-mode .float-card {
 }
 
 .float-card-1 {
-    left: -70px;
+    left: -12px;
     top: 40px;
 }
 
 .float-card-2 {
-    left: -70px;
+    left: -12px;
     bottom: 60px;
     animation-delay: 2s;
 }
