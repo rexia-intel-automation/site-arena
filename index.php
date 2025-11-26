@@ -79,29 +79,31 @@
 
         <div class="hero-visual">
             <div class="stadium-card">
-                <div class="stadium-img">
-                    <svg width="120" height="120" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                        <ellipse cx="12" cy="12" rx="10" ry="4"/>
-                        <path d="M2 12v4c0 2.2 4.5 4 10 4s10-1.8 10-4v-4"/>
-                        <path d="M2 8v4M22 8v4"/>
-                        <ellipse cx="12" cy="8" rx="10" ry="4"/>
-                    </svg>
-                </div>
-                <div class="stadium-info">
-                    <h3 class="stadium-title">Arena BRB Mané Garrincha</h3>
-                    <p class="stadium-sub">Brasília, Distrito Federal</p>
-                    <div class="stadium-stats">
-                        <div>
-                            <span class="stat-val">72K</span>
-                            <span class="stat-label">Capacidade</span>
-                        </div>
-                        <div>
-                            <span class="stat-val">2013</span>
-                            <span class="stat-label">Inauguração</span>
-                        </div>
-                        <div>
-                            <span class="stat-val">FIFA</span>
-                            <span class="stat-label">Padrão</span>
+                <div class="stadium-inner">
+                    <div class="stadium-img">
+                        <svg width="120" height="120" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                            <path d="M2 12v4c0 2.2 4.5 4 10 4s10-1.8 10-4v-4"/>
+                            <path d="M2 8v4M22 8v4"/>
+                            <ellipse cx="12" cy="8" rx="10" ry="4"/>
+                        </svg>
+                    </div>
+                    <div class="stadium-info">
+                        <h3 class="stadium-title">Arena BRB Mané Garrincha</h3>
+                        <p class="stadium-sub">Brasília, Distrito Federal</p>
+                        <div class="stadium-stats">
+                            <div>
+                                <span class="stat-val">72K</span>
+                                <span class="stat-label">Capacidade</span>
+                            </div>
+                            <div>
+                                <span class="stat-val">2013</span>
+                                <span class="stat-label">Inauguração</span>
+                            </div>
+                            <div>
+                                <span class="stat-val">FIFA</span>
+                                <span class="stat-label">Padrão</span>
+                            </div>
                         </div>
                     </div>
                 </div>
