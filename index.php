@@ -40,16 +40,17 @@
 
     <a href="#" class="nav-cta">Comprar Ingressos</a>
 
-    <!-- Toggle AGORA DENTRO DO NAV -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
-        <span id="theme-icon">☀️</span>
-    </button>
-
     <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
         <span></span>
     </div>
+
+    <!-- Toggle AGORA DENTRO DO NAV -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+        <span id="theme-icon">☀️</span>
+    </button>
+    
 </nav>
 
     <!-- Hero Section -->
