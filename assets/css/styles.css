@@ -112,7 +112,8 @@ body.light-mode {
 }
 
 body.light-mode .theme-toggle {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--light-border);
     color: var(--brb-blue);
     box-shadow: 0 8px 32px rgba(0, 71, 187, 0.1);
@@ -287,7 +288,8 @@ body.light-mode .mobile-menu-toggle span {
 }
 
 body.light-mode .hero-badge {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--light-border);
 }
 
@@ -386,7 +388,8 @@ body.light-mode .hero-desc {
 }
 
 body.light-mode .btn-secondary {
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--light-border);
     color: var(--brb-blue);
 }
@@ -433,7 +436,8 @@ body.light-mode .btn-secondary:hover {
 }
 
 body.light-mode .stadium-card::before {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(40px);
     border: 1px solid var(--light-border);
     box-shadow: 0 30px 80px rgba(0, 71, 187, 0.15);
 }
@@ -524,7 +528,8 @@ body.light-mode .stat-label {
 }
 
 body.light-mode .float-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(30px);
     border: 1px solid var(--light-border);
     box-shadow: 0 20px 50px rgba(0, 71, 187, 0.15);
 }
@@ -646,7 +651,8 @@ body.light-mode .section-sub {
 }
 
 body.light-mode .event-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(40px);
     border: 1px solid var(--light-border);
     box-shadow: 0 10px 40px rgba(0, 71, 187, 0.08);
 }
@@ -812,7 +818,8 @@ body.light-mode .features {
 }
 
 body.light-mode .feature-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(40px);
     border: 1px solid var(--light-border);
     box-shadow: 0 10px 40px rgba(0, 71, 187, 0.08);
 }
