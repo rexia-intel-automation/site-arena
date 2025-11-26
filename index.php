@@ -330,7 +330,7 @@
     <section class="cta" id="contato">
         <div class="cta-card">
             <div class="cta-content">
-                <h2 class="cta-title">Traga seu evento para a Arena BRB/h2>
+                <h2 class="cta-title">Traga seu evento para a Arena BRB</h2>
                 <p class="cta-desc">Fale com o nosso time para reservar datas, conhecer configurações de espaço, cotar operações e construir experiências de alto impacto em Brasília.</p>
                 <div class="cta-btns">
                     <button class="btn-white" onclick="alert('Em breve você será redirecionado para o formulário de contato!')">Falar com Comercial</button>
