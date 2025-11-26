@@ -507,7 +507,7 @@ body.light-mode .float-card {
 }
 
 .float-card-2 {
-    bottom: 220px;
+    top: 120px;
     animation-delay: 2s;
 }
 
