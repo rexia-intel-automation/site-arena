@@ -93,36 +93,6 @@ body.light-mode {
 }
 
 /* Theme Toggle */
-.theme-toggle-container {
-    position: fixed;
-    top: 100px;
-    right: 30px;
-    z-index: 999;
-}
-
-.theme-toggle {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 50px;
-    padding: 12px 24px;
-    color: white;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-    .theme-toggle-container {
-        top: 80px;
-        right: 20px;
-    }
-
     .theme-toggle {
         padding: 10px 20px;
         font-size: 0.85rem;
@@ -154,12 +124,49 @@ nav {
     z-index: 1000;
     padding: 20px 60px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background: rgba(4, 8, 15, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     transition: all 0.3s;
+}
+
+body.light-mode nav {
+    background: rgba(248, 250, 252, 0.85);
+    border-bottom: 1px solid var(--light-border);
+}
+
+.nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    margin-left: auto; /* empurra os links para a direita */
+}
+
+/* Theme Toggle – botão dentro do nav */
+.theme-toggle {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 12px 24px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-left: 16px; /* espaçamento em relação ao "Comprar Ingressos" */
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--light-border);
+    color: var(--brb-blue);
+    box-shadow: 0 8px 32px rgba(0, 71, 187, 0.1);
 }
 
 body.light-mode nav {
@@ -1152,22 +1159,13 @@ body.light-mode .social-link {
 }
 
 @media (max-width: 768px) {
-    .theme-toggle-container {
-        top: 80px;
-        right: 20px;
-    }
-
-    .theme-toggle {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-
     nav {
         padding: 16px 24px;
     }
 
     .nav-links {
         display: none;
+        margin-left: 0; /* some no mobile, não precisa empurrar mais */
     }
 
     .nav-cta {
@@ -1176,6 +1174,27 @@ body.light-mode .social-link {
 
     .mobile-menu-toggle {
         display: flex;
+    }
+
+    /* Theme toggle em formato de ícone no mobile */
+    .theme-toggle {
+        padding: 8px;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        box-shadow: none;
+        gap: 0;
+        font-size: 0;   /* esconde o texto sem quebrar o layout */
+        margin-left: 8px;
+    }
+
+    .theme-toggle #theme-text {
+        display: none;
+    }
+
+    .theme-toggle #theme-icon {
+        font-size: 18px;
+        line-height: 1;
     }
 
     .hero,
