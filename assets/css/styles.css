@@ -224,7 +224,7 @@ body.light-mode .logo-light { display: block; }
 .float-card-1 { top: 32px; }
 
 .float-card-2 { 
-  top: 84px;
+  bottom: 220px;
   animation-delay: 1.8s;
 }
 
