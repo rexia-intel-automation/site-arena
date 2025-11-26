@@ -173,7 +173,7 @@
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                             <circle cx="12" cy="10" r="3"/>
                         </svg>
-                        Arena BRB - Estádio
+                        Arena BRB Mané Garrincha
                     </p>
                     <div class="event-footer">
                         <span class="event-price">A partir de <strong>R$ 80</strong></span>
@@ -202,7 +202,7 @@
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                             <circle cx="12" cy="10" r="3"/>
                         </svg>
-                        Ginásio Nilson Nelson
+                        Arena BRB Nilson Nelson
                     </p>
                     <div class="event-footer">
                         <span class="event-price">A partir de <strong>R$ 50</strong></span>
@@ -231,7 +231,7 @@
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                             <circle cx="12" cy="10" r="3"/>
                         </svg>
-                        Arena BRB - Gramado
+                        Gramado - Arena BRB Mané Garrincha
                     </p>
                     <div class="event-footer">
                         <span class="event-price">A partir de <strong>R$ 120</strong></span>
@@ -259,7 +259,7 @@
                         <path d="M7 5V3M17 5V3"/>
                     </svg>
                 </div>
-                <h3 class="feature-title">Arena Principal</h3>
+                <h3 class="feature-title">Arena BRB Mané Garrincha</h3>
                 <p class="feature-desc">Estrutura para grandes shows, partidas e eventos de massa, com configurações variáveis de palco e plateia.</p>
             </div>
 
@@ -303,7 +303,7 @@
         <div class="section-header">
             <div>
                 <h2 class="section-title">Tour <span>Virtual 360º</span></h2>
-                <p class="section-sub">Explore a Arena BRB Mané Garrincha em uma experiência imersiva antes do seu evento</p>
+                <p class="section-sub">Em brave: Explore a Arena BRB Mané Garrincha em uma experiência imersiva antes do seu evento</p>
             </div>
         </div>
 
@@ -318,7 +318,7 @@
                 </div>
                 <div class="stadium-info">
                     <h3 class="stadium-title">Tour guiado em 360 graus</h3>
-                    <p class="stadium-sub">Em breve, visualize cadeiras, camarotes, acessos, circulação e vistas de palco direto do navegador.</p>
+                    <p class="stadium-sub">Em breve: visualize cadeiras, camarotes, acessos, circulação e vistas de palco direto do navegador.</p>
                 </div>
             </div>
         </div>
@@ -328,7 +328,7 @@
     <section class="cta" id="contato">
         <div class="cta-card">
             <div class="cta-content">
-                <h2 class="cta-title">Traga seu evento para a Arena BRB Mané Garrincha</h2>
+                <h2 class="cta-title">Traga seu evento para a Arena BRB/h2>
                 <p class="cta-desc">Fale com o nosso time para reservar datas, conhecer configurações de espaço, cotar operações e construir experiências de alto impacto em Brasília.</p>
                 <div class="cta-btns">
                     <button class="btn-white" onclick="alert('Em breve você será redirecionado para o formulário de contato!')">Falar com Comercial</button>
