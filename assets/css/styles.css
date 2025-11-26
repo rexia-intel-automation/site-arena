@@ -1,9 +1,3 @@
-Segue o CSS completo já ajustado para:
-
-* `float-card` sempre acima de tudo (z-index alto).
-* Sobreposição máxima de **20px** para dentro do `stadium-card` (usando `translateX(calc(-100% + 20px))` em todos os frames da animação).
-
-```css
 /* ===================================
    Arena BRB Mané Garrincha - Styles
    =================================== */
