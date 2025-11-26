@@ -1,3 +1,9 @@
+Segue o CSS completo já ajustado para:
+
+* `float-card` sempre acima de tudo (z-index alto).
+* Sobreposição máxima de **20px** para dentro do `stadium-card` (usando `translateX(calc(-100% + 20px))` em todos os frames da animação).
+
+```css
 /* ===================================
    Arena BRB Mané Garrincha - Styles
    =================================== */
@@ -418,7 +424,7 @@ body.light-mode .btn-secondary:hover {
     transition: all 0.4s ease;
 }
 
-/* Fundo do stadium card (camada 1 - pode ser "mordida" pelos floats) */
+/* Fundo do stadium card (camada 1) */
 .stadium-card::before {
     content: '';
     position: absolute;
@@ -438,10 +444,10 @@ body.light-mode .stadium-card::before {
     box-shadow: 0 30px 80px rgba(0, 71, 187, 0.15);
 }
 
-/* Conteúdo interno protegido (camada 3 - sempre visível) */
+/* Conteúdo interno */
 .stadium-inner {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     border-radius: 18px;
     overflow: hidden;
 }
@@ -507,9 +513,10 @@ body.light-mode .stat-label {
     color: rgba(15, 23, 42, 0.5);
 }
 
-/* Float Cards (camada 4 - primeiro plano, acima de tudo) */
+/* Float Cards – acima de tudo, invasão máxima 20px no stadium */
 .float-card {
     position: absolute;
+    left: 0; /* referência: borda esquerda do stadium-card */
     background: var(--glass);
     backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
@@ -520,7 +527,7 @@ body.light-mode .stat-label {
     gap: 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     animation: float 5s ease-in-out infinite;
-    z-index: 4;
+    z-index: 10; /* acima de tudo na hero-visual */
 }
 
 body.light-mode .float-card {
@@ -529,26 +536,17 @@ body.light-mode .float-card {
     box-shadow: 0 20px 50px rgba(0, 71, 187, 0.15);
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
+/* Posição vertical de cada card (horizontal é controlada via transform) */
 .float-card-1 {
-    left: -120px;
     top: 40px;
 }
 
 .float-card-2 {
-    left: -120px;
     bottom: 220px;
     animation-delay: 2s;
 }
 
+/* Ícone e textos dos floats */
 .float-icon {
     width: 38px;
     height: 38px;
@@ -575,6 +573,16 @@ body.light-mode .float-info h4 {
 
 body.light-mode .float-info p {
     color: rgba(15, 23, 42, 0.6);
+}
+
+/* Float: sempre com translateX(-100% + 20px) => só 20px entram no card */
+@keyframes float {
+    0%, 100% {
+        transform: translate(calc(-100% + 20px), 0);   /* invasão horizontal fixa de 20px */
+    }
+    50% {
+        transform: translate(calc(-100% + 20px), -12px); /* flutua só no eixo Y */
+    }
 }
 
 /* Sections */
@@ -1219,3 +1227,4 @@ body.light-mode .social-link {
 .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
 }
+```
