@@ -59,7 +59,7 @@
                 Maior complexo de eventos do Brasil
             </div>
             <h1>Onde <span class="gradient">Brasília</span> vive suas maiores experiências</h1>
-            <p class="hero-desc">Arena BRB Mané Garrincha: 72 mil metros quadrados de entretenimento, esporte e cultura no coração da capital.</p>
+            <p class="hero-desc">Arena BRB: 830 mil metros quadrados de entretenimento, esporte e cultura no coração da capital.</p>
             <div class="hero-btns">
                 <a href="#eventos" class="btn-primary">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
