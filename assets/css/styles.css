@@ -206,8 +206,8 @@ body.light-mode .logo-light { display: block; }
   50% { opacity: 0.5; transform: scale(1.3); }
 }
 
-/* Hero Visual – Responsivo + Stacking Context Blindado */
-/* Hero Visual – AGORA RESPONSIVO DE VERDADE */
+/* Hero Visual – Responsivo + Stacking Context */
+
 .hero-visual {
   position: absolute;
   right: 60px;
@@ -220,9 +220,13 @@ body.light-mode .logo-light { display: block; }
   transition: all .8s cubic-bezier(.16,1,.3,1);   /* ← troquei de .6s para .8s */
 }
 
-/* Posição padrão dos floating cards (desktop grande) */
+/* Posição final dos floating cards */
 .float-card-1 { top: 32px; }
-.float-card-2 { top: 112px; animation-delay: 1.8s; }
+
+.float-card-2 { 
+  top: 84px;
+  animation-delay: 1.8s;
+}
 
 /* Tablet e mobile ≤ 1200px – card vai pro centro e floating cards ficam juntos acima do título */
 @media (max-width: 1200px) {
@@ -242,7 +246,7 @@ body.light-mode .logo-light { display: block; }
   }
 
   .float-card-1 { top: -36px !important; }
-  .float-card-2 { top: 44px !important; }   /* 40px abaixo do primeiro */
+  .float-card-2 { top: 16px !important; }   /* 40px abaixo do primeiro */
 }
 
 @media (max-width: 768px) {
