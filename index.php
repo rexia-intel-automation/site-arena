@@ -24,33 +24,34 @@
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
 
-    <!-- Theme Toggle -->
-    <div class="theme-toggle-container">
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
-            <span id="theme-icon">☀️</span>
-            <span id="theme-text">Modo Claro</span>
-        </button>
+    <!-- Navigation -->
+<nav id="navbar">
+    <div class="logo">
+        <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
+        <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
     </div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="logo">
-            <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
-            <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#eventos">Eventos</a></li>
-            <li><a href="#espacos">Espaços</a></li>
-            <li><a href="#tour">Tour Virtual</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-        <a href="#" class="nav-cta">Comprar Ingressos</a>
-        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    <ul class="nav-links">
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#espacos">Espaços</a></li>
+        <li><a href="#tour">Tour Virtual</a></li>
+        <li><a href="#contato">Contato</a></li>
+    </ul>
+
+    <a href="#" class="nav-cta">Comprar Ingressos</a>
+
+    <!-- Toggle AGORA DENTRO DO NAV -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-text">Modo Claro</span>
+    </button>
+
+    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
     <!-- Hero Section -->
     <section class="hero">
