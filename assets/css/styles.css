@@ -86,29 +86,6 @@ body.light-mode {
     opacity: 0.08;
 }
 
-/* Theme Toggle */
-    .theme-toggle {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-
-    nav {
-        padding: 16px 24px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .nav-cta {
-        display: none;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
-    }
-}
-
 /* Navigation */
 nav {
     position: fixed;
@@ -123,44 +100,6 @@ nav {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     transition: all 0.3s;
-}
-
-body.light-mode nav {
-    background: rgba(248, 250, 252, 0.85);
-    border-bottom: 1px solid var(--light-border);
-}
-
-.nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    margin-left: auto; /* empurra os links para a direita */
-}
-
-/* Theme Toggle – botão dentro do nav */
-.theme-toggle {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 999px;
-    padding: 12px 24px;
-    color: white;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    margin-left: 16px; /* espaçamento em relação ao "Comprar Ingressos" */
-}
-
-body.light-mode .theme-toggle {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid var(--light-border);
-    color: var(--brb-blue);
-    box-shadow: 0 8px 32px rgba(0, 71, 187, 0.1);
 }
 
 body.light-mode nav {
@@ -196,10 +135,12 @@ body.light-mode .logo-light {
     display: block;
 }
 
+/* Links do nav – empurrados para a direita */
 .nav-links {
     display: flex;
     gap: 36px;
     list-style: none;
+    margin-left: auto;
 }
 
 .nav-links a {
@@ -253,6 +194,32 @@ body.light-mode .nav-links a:hover {
 .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(0, 71, 187, 0.5);
+}
+
+/* Theme Toggle – botão dentro do nav */
+.theme-toggle {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 12px 24px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-left: 16px; /* espaçamento em relação ao "Comprar Ingressos" */
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--light-border);
+    color: var(--brb-blue);
+    box-shadow: 0 8px 32px rgba(0, 71, 187, 0.1);
 }
 
 /* Mobile Menu Toggle */
