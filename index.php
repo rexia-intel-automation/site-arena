@@ -43,7 +43,6 @@
     <!-- Toggle AGORA DENTRO DO NAV -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
         <span id="theme-icon">☀️</span>
-        <span id="theme-text">Modo Claro</span>
     </button>
 
     <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
