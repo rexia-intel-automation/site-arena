@@ -316,12 +316,19 @@ body.light-mode .float-card {
     width: min(440px, 92vw);
   }
 
+  /* Cards flutuantes ficam na esquerda, um em cima do outro, acima do título */
   .float-card {
-    left: 50%;
-    transform: translateX(calc(-100% - 20px));
+    left: 0;                                    /* volta para a esquerda */
+    transform: translateX(calc(-100% + 20px);     /* mesma invasão de 20 px do desktop */
   }
-  .float-card-1 { top: -36px; }
-  .float-card-2 { top: auto; bottom: -36px; animation-delay: 1.5s; }
+
+  .float-card-1 {
+    top: -36px;                                 /* aparece acima do card */
+  }
+
+  .float-card-2 {
+    top: 44px;                                  /* -36px + 80px de altura do card 1 + 40px de distância desejada */
+  }
 }
 
 @media (max-width: 768px) {
