@@ -223,11 +223,6 @@ body.light-mode .logo-light { display: block; }
 /* Posição final dos floating cards */
 .float-card-1 { top: 32px; }
 
-.float-card-2 { 
-  bottom: 220px;
-  animation-delay: 1.8s;
-}
-
 /* Tablet e mobile ≤ 1200px – card vai pro centro e floating cards ficam juntos acima do título */
 @media (max-width: 1200px) {
   .hero-visual {
@@ -246,7 +241,7 @@ body.light-mode .logo-light { display: block; }
   }
 
   .float-card-1 { top: -36px !important; }
-  .float-card-2 { top: 16px !important; }   /* 40px abaixo do primeiro */
+  .float-card-2 { top: 52px !important; }   /* 20px abaixo do primeiro (-36px + ~68px + 20px) */
 }
 
 @media (max-width: 768px) {
@@ -284,7 +279,7 @@ body.light-mode .stadium-card::before {
   box-shadow: 0 30px 80px rgba(0, 71, 187, 0.14);
 }
 
-/* Camada 1: Floating cards (sempre atrás do texto) */
+/* Camada 1: Floating cards (sempre visíveis acima do conteúdo) */
 .float-card {
   position: absolute;
   left: 0;
@@ -298,7 +293,7 @@ body.light-mode .stadium-card::before {
   gap: 12px;
   box-shadow: var(--glass-shadow);
   animation: float 5s ease-in-out infinite;
-  z-index: 1;
+  z-index: 5;
   pointer-events: auto;
 }
 
@@ -310,7 +305,7 @@ body.light-mode .float-card {
 }
 
 .float-card-1 { top: 32px; }
-.float-card-2 { top: 118px; animation-delay: 2s; }
+.float-card-2 { top: 120px; animation-delay: 2s; } /* 20px abaixo do card 1 (32px + ~68px altura + 20px) */
 
 @keyframes float {
   0%,100% { transform: translate(calc(-100% + 20px), 0); }
