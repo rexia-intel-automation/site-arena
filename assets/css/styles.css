@@ -559,7 +559,7 @@ body.light-mode .float-card {
 
 .float-card-2 {
     top: 180px; /* 40px + ~72px altura do card 1 + 20px de espaçamento */
-    animation-delay: 0.5s;
+    animation-delay: 2s;
 }
 
 /* Ícone e textos dos floats */
