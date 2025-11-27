@@ -311,18 +311,8 @@
         </div>
 
         <div class="tour-container">
-            <div class="stadium-card">
-                <div class="stadium-img">
-                    <svg width="120" height="120" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                        <ellipse cx="12" cy="7" rx="9" ry="3"/>
-                        <path d="M3 7v6c0 1.7 4 3 9 3s9-1.3 9-3V7"/>
-                        <path d="M3 13v4c0 1.7 4 3 9 3s9-1.3 9-3v-4"/>
-                    </svg>
-                </div>
-                <div class="stadium-info">
-                    <h3 class="stadium-title">Tour guiado em 360 graus</h3>
-                    <p class="stadium-sub">Em breve: visualize cadeiras, camarotes, acessos, circulação e vistas de palco direto do navegador.</p>
-                </div>
+            <div class="stadium-card tour-card">
+                <img src="https://i.imgur.com/NsZcv7d.jpeg" alt="Tour Virtual 360º" class="tour-image">
             </div>
         </div>
     </section>
