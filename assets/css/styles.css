@@ -482,8 +482,8 @@ body.light-mode .stadium-card::before {
 }
 
 .stadium-img img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 65%;
     width: auto;
     height: auto;
     object-fit: contain;
