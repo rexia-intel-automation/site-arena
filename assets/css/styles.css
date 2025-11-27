@@ -903,6 +903,18 @@ body.light-mode .feature-desc {
     margin: 0 auto;
 }
 
+.tour-card {
+    padding: 16px;
+}
+
+.tour-image {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    object-fit: cover;
+}
+
 /* CTA Section */
 .cta-card {
     background: linear-gradient(135deg, var(--brb-dark), var(--brb-blue));
