@@ -973,6 +973,36 @@ body.light-mode .feature-desc {
     gap: 16px;
 }
 
+.cta-images {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+}
+
+.cta-image-placeholder {
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.cta-image-placeholder:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-4px);
+}
+
+.cta-image-placeholder svg {
+    opacity: 0.5;
+}
+
 .btn-white {
     background: white;
     color: var(--brb-blue);
