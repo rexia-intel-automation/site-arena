@@ -474,6 +474,9 @@ body.light-mode .stadium-card::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border-radius: inherit; /* ou um valor fixo igual ao do card, ex: 28px */
+
 }
 
 .stadium-img svg {
@@ -483,7 +486,9 @@ body.light-mode .stadium-card::before {
 .stadium-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+   border-radius: inherit;
+   display: block;
 }
 
 .stadium-info {
