@@ -975,14 +975,16 @@ body.light-mode .feature-desc {
 
 .cta-images {
     display: flex;
-    gap: 16px;
+    flex-direction: row;
+    gap: 20px;
     position: relative;
     z-index: 2;
+    align-items: center;
 }
 
 .cta-image-placeholder {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 200px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -991,6 +993,7 @@ body.light-mode .feature-desc {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .cta-image-placeholder:hover {
