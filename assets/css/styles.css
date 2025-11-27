@@ -474,6 +474,7 @@ body.light-mode .stadium-card::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 .stadium-img svg {
@@ -481,8 +482,10 @@ body.light-mode .stadium-card::before {
 }
 
 .stadium-img img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
 
