@@ -312,7 +312,9 @@
 
         <div class="tour-container">
             <div class="stadium-card tour-card">
-                <img src="https://i.imgur.com/NsZcv7d.jpeg" alt="Tour Virtual 360º" class="tour-image">
+                <div class="stadium-inner">
+                    <img src="https://i.imgur.com/NsZcv7d.jpeg" alt="Tour Virtual 360º" class="tour-image">
+                </div>
             </div>
         </div>
     </section>
