@@ -306,7 +306,7 @@
         <div class="section-header">
             <div>
                 <h2 class="section-title">Tour <span>Virtual 360º</span></h2>
-                <p class="section-sub">Em brave: Explore a Arena BRB Mané Garrincha em uma experiência imersiva antes do seu evento</p>
+                <p class="section-sub">Em breve: Explore a Arena BRB Mané Garrincha em uma experiência imersiva antes do seu evento</p>
             </div>
         </div>
 
