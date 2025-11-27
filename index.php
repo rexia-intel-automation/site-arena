@@ -82,12 +82,7 @@
             <div class="stadium-card">
                 <div class="stadium-inner">
                     <div class="stadium-img">
-                        <svg width="120" height="120" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                            <ellipse cx="12" cy="12" rx="10" ry="4"/>
-                            <path d="M2 12v4c0 2.2 4.5 4 10 4s10-1.8 10-4v-4"/>
-                            <path d="M2 8v4M22 8v4"/>
-                            <ellipse cx="12" cy="8" rx="10" ry="4"/>
-                        </svg>
+                        <img src="https://i.imgur.com/BPnRSBE.jpeg" alt="Arena BRB Mané Garrincha">
                     </div>
                     <div class="stadium-info">
                         <h3 class="stadium-title">Arena BRB Mané Garrincha</h3>
