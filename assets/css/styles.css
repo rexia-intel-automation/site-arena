@@ -922,7 +922,7 @@ body.light-mode .feature-desc {
     max-height: 500px;
     border-radius: 18px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
 }
 
