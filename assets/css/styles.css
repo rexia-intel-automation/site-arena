@@ -480,6 +480,12 @@ body.light-mode .stadium-card::before {
     opacity: 0.4;
 }
 
+.stadium-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .stadium-info {
     padding: 28px;
 }
