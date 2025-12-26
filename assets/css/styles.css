@@ -240,7 +240,7 @@ body.light-mode .theme-toggle-floating {
     .nav-links.active {
         display: flex !important;
         position: fixed;
-        left: 0;
+        right: 0;
         width: 280px;
         max-width: 80vw;
         background: rgba(4, 8, 15, 0.98);
