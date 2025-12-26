@@ -14,7 +14,15 @@
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
     # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
 
-    # Remove .php extension from URLs
+    # Redirecionar URLs com .php para sem .php (301 permanente)
+    # Exceto a pasta /admin
+    RewriteCond %{REQUEST_URI} !^/admin
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # Permitir acesso sem .php (reescrever internamente)
+    # Exceto a pasta /admin
+    RewriteCond %{REQUEST_URI} !^/admin
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule ^(.*)$ $1.php [L]
@@ -23,6 +31,15 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule ^(.*)$ $1.html [L]
+
+    # Rotas amigáveis para eventos e notícias
+    # /eventos -> /public/eventos.php
+    RewriteRule ^eventos$ public/eventos.php [L]
+    RewriteRule ^eventos/([a-zA-Z0-9-]+)$ public/evento.php?slug=$1 [L]
+
+    # /noticias -> /public/noticias.php
+    RewriteRule ^noticias$ public/noticias.php [L]
+    RewriteRule ^noticias/([a-zA-Z0-9-]+)$ public/noticia.php?slug=$1 [L]
 </IfModule>
 
 # Security Headers
