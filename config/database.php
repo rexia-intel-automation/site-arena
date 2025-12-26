@@ -6,9 +6,9 @@
 
 // Configurações do banco de dados
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'arena_brb');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'u568843907_arenabrbweb');
+define('DB_USER', 'u568843907_gestaoarenaadm');
+define('DB_PASS', ''); // Adicione a senha do MySQL aqui
 define('DB_CHARSET', 'utf8mb4');
 
 // Timezone
