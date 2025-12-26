@@ -1,3 +1,27 @@
+<?php
+/**
+ * Homepage - Arena BRB
+ * Integração com banco de dados para eventos dinâmicos
+ */
+
+require_once 'config/database.php';
+require_once 'includes/db/Database.php';
+require_once 'includes/models/Evento.php';
+require_once 'includes/helpers/functions.php';
+
+$eventoModel = new Evento();
+
+// Buscar próximos eventos em destaque (ou próximos publicados)
+$proximosEventos = $eventoModel->getDestaques(3);
+
+// Se não houver eventos em destaque, buscar os próximos publicados
+if (empty($proximosEventos)) {
+    $proximosEventos = $eventoModel->getPublicados(3);
+}
+
+// Buscar próximo evento para o float card
+$proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -114,7 +138,25 @@
                 </div>
                 <div class="float-info">
                     <h4>Próximo Evento</h4>
-                    <p>Em 3 dias</p>
+                    <p>
+                        <?php if ($proximoEvento): ?>
+                            <?php
+                            $hoje = new DateTime();
+                            $dataEvento = new DateTime($proximoEvento['data_evento']);
+                            $diff = $hoje->diff($dataEvento);
+
+                            if ($diff->days == 0) {
+                                echo 'Hoje!';
+                            } elseif ($diff->days == 1) {
+                                echo 'Amanhã';
+                            } else {
+                                echo 'Em ' . $diff->days . ' dias';
+                            }
+                            ?>
+                        <?php else: ?>
+                            Em breve
+                        <?php endif; ?>
+                    </p>
                 </div>
             </div>
 
@@ -150,93 +192,76 @@
         </div>
 
         <div class="events-grid">
-            <!-- Event Card 1 -->
-            <div class="event-card">
-                <div class="event-img">
-                    <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M9 18V5l12-2v13"/>
-                        <circle cx="6" cy="18" r="3"/>
-                        <circle cx="18" cy="16" r="3"/>
-                    </svg>
-                    <div class="event-date">
-                        <span class="day">15</span>
-                        <span class="month">DEZ</span>
-                    </div>
-                    <span class="event-cat">Show</span>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">Turma do Pagode + Rodriguinho</h3>
-                    <p class="event-venue">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        Arena BRB Mané Garrincha
-                    </p>
-                    <div class="event-footer">
-                        <span class="event-price">A partir de <strong>R$ 80</strong></span>
-                        <a href="#" class="event-btn">Comprar</a>
-                    </div>
-                </div>
-            </div>
+            <?php if (!empty($proximosEventos)): ?>
+                <?php foreach ($proximosEventos as $evento): ?>
+                    <?php
+                    // Formatar data
+                    $dataEvento = new DateTime($evento['data_evento']);
+                    $dia = $dataEvento->format('d');
+                    $mesNum = (int)$dataEvento->format('m');
 
-            <!-- Event Card 2 -->
-            <div class="event-card">
-                <div class="event-img">
-                    <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2a15 15 0 000 20M2 12h20"/>
-                    </svg>
-                    <div class="event-date">
-                        <span class="day">18</span>
-                        <span class="month">DEZ</span>
+                    // Meses em português
+                    $mesesPt = [
+                        1 => 'JAN', 2 => 'FEV', 3 => 'MAR', 4 => 'ABR',
+                        5 => 'MAI', 6 => 'JUN', 7 => 'JUL', 8 => 'AGO',
+                        9 => 'SET', 10 => 'OUT', 11 => 'NOV', 12 => 'DEZ'
+                    ];
+                    $mes = $mesesPt[$mesNum];
+                    ?>
+                    <div class="event-card">
+                        <div class="event-img" style="background-image: url('/<?= htmlspecialchars($evento['imagem_destaque']) ?>'); background-size: cover; background-position: center;">
+                            <div class="event-date">
+                                <span class="day"><?= $dia ?></span>
+                                <span class="month"><?= $mes ?></span>
+                            </div>
+                            <span class="event-cat"><?= htmlspecialchars($evento['categoria_nome']) ?></span>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title"><?= htmlspecialchars($evento['titulo']) ?></h3>
+                            <p class="event-venue">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <?= htmlspecialchars($evento['local_nome']) ?>
+                            </p>
+                            <div class="event-footer">
+                                <span class="event-price">A partir de <strong>R$ <?= number_format($evento['preco_minimo'], 2, ',', '.') ?></strong></span>
+                                <a href="<?= htmlspecialchars($evento['link_ingressos']) ?>" target="_blank" class="event-btn">Comprar</a>
+                            </div>
+                        </div>
                     </div>
-                    <span class="event-cat">Basquete</span>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">Brasília Basquete vs Flamengo</h3>
-                    <p class="event-venue">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <!-- Cards de exemplo quando não há eventos -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
                         </svg>
-                        Arena BRB Nilson Nelson
-                    </p>
-                    <div class="event-footer">
-                        <span class="event-price">A partir de <strong>R$ 50</strong></span>
-                        <a href="#" class="event-btn">Comprar</a>
+                        <div class="event-date">
+                            <span class="day">--</span>
+                            <span class="month">---</span>
+                        </div>
+                        <span class="event-cat">Em breve</span>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Novos eventos em breve</h3>
+                        <p class="event-venue">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            Arena BRB
+                        </p>
+                        <div class="event-footer">
+                            <span class="event-price">Aguarde novidades</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event Card 3 -->
-            <div class="event-card">
-                <div class="event-img">
-                    <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M4 6h16v12H4z"/>
-                        <path d="M4 10h16"/>
-                    </svg>
-                    <div class="event-date">
-                        <span class="day">22</span>
-                        <span class="month">DEZ</span>
-                    </div>
-                    <span class="event-cat">Festival</span>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">Festival de Verão Brasília</h3>
-                    <p class="event-venue">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        Gramado - Arena BRB Mané Garrincha
-                    </p>
-                    <div class="event-footer">
-                        <span class="event-price">A partir de <strong>R$ 120</strong></span>
-                        <a href="#" class="event-btn">Comprar</a>
-                    </div>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </section>
 

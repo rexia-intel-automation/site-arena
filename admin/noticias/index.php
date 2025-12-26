@@ -36,9 +36,10 @@ if ($busca) {
 // Paginação
 $paginaAtual = $_GET['pagina'] ?? 1;
 $itensPorPagina = 15;
+$offset = ($paginaAtual - 1) * $itensPorPagina;
 
 // Buscar posts
-$posts = $postModel->listar($filtros, $paginaAtual, $itensPorPagina);
+$posts = $postModel->getTodos($itensPorPagina, $offset, $filtros);
 $totalPosts = $postModel->contarTotal($filtros);
 $totalPaginas = ceil($totalPosts / $itensPorPagina);
 
