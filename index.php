@@ -48,30 +48,25 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
 
-    <!-- Navigation -->
-<nav id="navbar">
-    <div class="logo">
-        <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
-        <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
-    </div>
+    <!-- Theme Toggle Flutuante -->
+    <button class="theme-toggle-floating" onclick="toggleTheme()" aria-label="Alternar tema">
+        <!-- Sun Icon (Lucide) - Modo Escuro Ativo -->
+        <svg id="sun-icon" class="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/>
+            <path d="M12 20v2"/>
+            <path d="m4.93 4.93 1.41 1.41"/>
+            <path d="m17.66 17.66 1.41 1.41"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+            <path d="m6.34 17.66-1.41 1.41"/>
+            <path d="m19.07 4.93-1.41 1.41"/>
+        </svg>
 
-    <ul class="nav-links">
-        <li><a href="#eventos">Eventos</a></li>
-        <li><a href="#espacos">Espaços</a></li>
-        <li><a href="#tour">Tour Virtual</a></li>
-        <li><a href="#contato">Contato</a></li>
-    </ul>
-
-
-    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Toggle AGORA DENTRO DO NAV -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
-        <span id="theme-icon">☀️</span>
+        <!-- Moon Icon (Lucide) - Modo Claro Ativo -->
+        <svg id="moon-icon" class="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
     </button>
 
     <!-- Navigation -->
