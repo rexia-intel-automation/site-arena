@@ -62,7 +62,6 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
         <li><a href="#contato">Contato</a></li>
     </ul>
 
-    <a href="#" class="nav-cta">Comprar Ingressos</a>
 
     <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
         <span></span>
