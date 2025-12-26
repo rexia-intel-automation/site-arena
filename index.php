@@ -26,7 +26,7 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Arena BRB Mané Garrincha - O maior complexo de entretenimento e eventos do Brasil em Brasília">
     <meta name="keywords" content="Arena BRB, Mané Garrincha, Brasília, eventos, shows, estádio">
     <meta name="author" content="Arena BRB Mané Garrincha">
