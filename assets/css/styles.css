@@ -618,7 +618,7 @@ body.light-mode .float-info p {
 .features,
 .tour,
 .cta {
-    padding: 40px 60px;
+    padding: 20px 60px;
     position: relative;
     z-index: 2;
 }
@@ -943,6 +943,8 @@ body.light-mode .feature-desc {
     background: linear-gradient(135deg, var(--brb-dark), var(--brb-blue));
     border-radius: 28px;
     padding: 70px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     position: relative;
     overflow: hidden;
     display: flex;
