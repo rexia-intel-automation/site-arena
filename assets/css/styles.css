@@ -155,50 +155,139 @@ body.light-mode .theme-toggle-floating {
     nav {
         padding: 16px 24px;
         justify-content: space-between !important;
+        gap: 0;
     }
 
-    .nav-links {
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
         display: none;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Mobile Menu Links */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: rgba(4, 8, 15, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 20px;
+        padding: 0;
         gap: 0;
-        border-bottom: 1px solid var(--glass-border);
+        z-index: 999;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--glass-border);
+        max-width: 280px;
     }
 
     .nav-links.active {
         display: flex;
+        transform: translateX(0);
     }
 
     .nav-links li {
         width: 100%;
-        text-align: center;
-        padding: 15px 0;
+        padding: 0;
         border-bottom: 1px solid var(--glass-border);
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: slideInLeft 0.3s ease forwards;
     }
+
+    .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links li:nth-child(2) { animation-delay: 0.15s; }
+    .nav-links li:nth-child(3) { animation-delay: 0.2s; }
+    .nav-links li:nth-child(4) { animation-delay: 0.25s; }
+    .nav-links li:nth-child(5) { animation-delay: 0.3s; }
+    .nav-links li:nth-child(6) { animation-delay: 0.35s; }
 
     .nav-links li:last-child {
         border-bottom: none;
     }
 
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 18px 24px;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.05);
+        padding-left: 32px;
+    }
+
+    /* Light Mode Mobile Menu */
     body.light-mode .nav-links {
         background: rgba(248, 250, 252, 0.98);
     }
 
-    .logo {
-        order: 0;
+    body.light-mode .nav-links a:hover {
+        background: rgba(0, 71, 187, 0.05);
     }
 
+    /* Menu Items Stacking - Both menus in same container */
+    .nav-links-left,
+    .nav-links-right {
+        position: fixed;
+        flex: none;
+    }
+
+    /* Stack menus vertically */
+    .nav-links-left {
+        top: 70px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--glass-border);
+    }
+
+    .nav-links-right {
+        top: calc(70px + 3 * 57px + 10px);
+        padding-top: 0;
+    }
+
+    body.light-mode .nav-links-left {
+        border-bottom: 2px solid var(--light-border);
+    }
+
+    /* Logo positioning */
+    .logo {
+        order: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Mobile Toggle positioning */
     .mobile-menu-toggle {
         display: flex;
         order: 1;
+        position: relative;
+        z-index: 1001;
     }
 
+    /* Hamburger Animation */
     .mobile-menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -210,6 +299,19 @@ body.light-mode .theme-toggle-floating {
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
+}
+
+/* Slide In Animation */
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
 }
 
 /* Navigation */
