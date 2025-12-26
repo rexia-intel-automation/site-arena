@@ -73,8 +73,36 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
         <span id="theme-icon">☀️</span>
     </button>
-    
-</nav>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <!-- Menu Esquerdo -->
+        <ul class="nav-links nav-links-left">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#espacos">Espaços</a></li>
+        </ul>
+
+        <!-- Logo Central -->
+        <div class="logo">
+            <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
+            <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
+        </div>
+
+        <!-- Menu Direito -->
+        <ul class="nav-links nav-links-right">
+            <li><a href="#noticias">Notícias</a></li>
+            <li><a href="#tour">Tour</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
