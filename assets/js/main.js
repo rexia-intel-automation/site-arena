@@ -24,17 +24,11 @@ function toggleTheme() {
 
 // Mobile Menu Toggle Function
 function toggleMobileMenu() {
-    console.log('toggleMobileMenu called'); // Debug
-
     const navLinks = document.querySelectorAll('.nav-links');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const body = document.body;
 
-    console.log('navLinks:', navLinks.length); // Debug
-    console.log('mobileToggle:', mobileToggle); // Debug
-
     if (!mobileToggle) {
-        console.error('Mobile toggle button not found!');
         return;
     }
 
@@ -55,7 +49,6 @@ function toggleMobileMenu() {
 
     // Toggle menu state
     const isOpen = mobileToggle.classList.contains('active');
-    console.log('Menu is currently:', isOpen ? 'open' : 'closed'); // Debug
 
     if (isOpen) {
         // Close menu
@@ -63,14 +56,12 @@ function toggleMobileMenu() {
         mobileToggle.classList.remove('active');
         overlay.classList.remove('active');
         body.classList.remove('menu-open');
-        console.log('Menu closed'); // Debug
     } else {
         // Open menu
         navLinks.forEach(link => link.classList.add('active'));
         mobileToggle.classList.add('active');
         overlay.classList.add('active');
         body.classList.add('menu-open');
-        console.log('Menu opened'); // Debug
     }
 }
 
@@ -90,35 +81,6 @@ function closeMobileMenuOnClick() {
 
 // Initialize mobile menu close on link click
 document.addEventListener('DOMContentLoaded', closeMobileMenuOnClick);
-
-// Initialize mobile menu toggle button
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-
-    if (mobileToggle) {
-        console.log('Mobile toggle found, adding event listeners');
-
-        // Remove any existing onclick attribute to avoid conflicts
-        mobileToggle.removeAttribute('onclick');
-
-        // Add click event listener
-        mobileToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Mobile toggle clicked');
-            toggleMobileMenu();
-        });
-
-        // Add touch event listener for better mobile support
-        mobileToggle.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            console.log('Mobile toggle touched');
-            toggleMobileMenu();
-        }, { passive: false });
-    } else {
-        console.error('Mobile toggle button not found in DOM');
-    }
-});
 
 // Load saved theme on page load
 window.addEventListener('DOMContentLoaded', () => {
