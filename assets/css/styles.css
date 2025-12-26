@@ -277,7 +277,7 @@ body.light-mode .mobile-menu-toggle span {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     padding: 140px 60px 100px;
@@ -424,7 +424,8 @@ body.light-mode .btn-secondary:hover {
 .hero-visual {
     position: absolute;
     right: 60px;
-    top: 50%;
+    left: 60%;
+    top: 65%;
     transform: translateY(-50%);
     width: 480px;
     z-index: 1;
@@ -617,7 +618,7 @@ body.light-mode .float-info p {
 .features,
 .tour,
 .cta {
-    padding: 100px 60px;
+    padding: 40px 60px;
     position: relative;
     z-index: 2;
 }
