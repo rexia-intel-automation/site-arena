@@ -24,12 +24,10 @@ function toggleTheme() {
 
 // Mobile Menu Toggle Function
 function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const navCta = document.querySelector('.nav-cta');
+    const navLinks = document.querySelectorAll('.nav-links');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
 
-    navLinks.classList.toggle('active');
-    navCta.classList.toggle('active');
+    navLinks.forEach(link => link.classList.toggle('active'));
     mobileToggle.classList.toggle('active');
 }
 
