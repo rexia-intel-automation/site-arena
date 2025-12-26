@@ -393,7 +393,8 @@ body.light-mode .theme-toggle-floating {
     }
 
     .event-img {
-        height: 120px;
+        height: auto;
+        aspect-ratio: 1 / 1;  /* Proporção 1:1 */
     }
 
     .event-date {
@@ -425,7 +426,7 @@ body.light-mode .theme-toggle-floating {
 
     .event-title {
         font-size: 0.9rem;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         line-height: 1.2;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -434,36 +435,23 @@ body.light-mode .theme-toggle-floating {
         -webkit-box-orient: vertical;
     }
 
-    .event-venue {
-        font-size: 0.75rem;
-        margin-bottom: 10px;
-    }
-
-    .event-venue svg {
-        width: 12px;
-        height: 12px;
+    /* Ocultar localização e preço em mobile */
+    .event-venue,
+    .event-price {
+        display: none;
     }
 
     .event-footer {
-        padding-top: 10px;
+        padding-top: 0;
         flex-direction: column;
-        gap: 8px;
+        gap: 0;
         align-items: stretch;
-    }
-
-    .event-price {
-        font-size: 0.75rem;
-        text-align: center;
-    }
-
-    .event-price strong {
-        font-size: 0.95rem;
-        display: block;
+        border-top: none;
     }
 
     .event-btn {
-        padding: 10px 16px;
-        font-size: 0.85rem;
+        padding: 8px 12px;
+        font-size: 0.8rem;
         width: 100%;
         text-align: center;
         border-radius: 6px;
@@ -477,23 +465,33 @@ body.light-mode .theme-toggle-floating {
 
     .feature-card {
         padding: 20px;
+        text-align: center;
     }
 
     .feature-icon {
         width: 44px;
         height: 44px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .feature-title {
         font-size: 1rem;
+        margin-bottom: 0;
     }
 
+    /* Ocultar descrição em mobile */
     .feature-desc {
-        font-size: 0.85rem;
+        display: none;
     }
 
     /* Tour Section */
+    .tour-container {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
     .tour-card {
         padding: 0;
     }
@@ -501,13 +499,15 @@ body.light-mode .theme-toggle-floating {
     .tour-image {
         max-height: 300px;
         border-radius: 14px;
+        width: 100%;
+        object-fit: contain;
     }
 
     /* CTA Card - Layout vertical */
     .cta-card {
         flex-direction: column;
         padding: 40px 24px;
-        text-align: center;
+        text-align: left;  /* Alinhado à esquerda */
         gap: 24px;
         margin-top: 60px;
         margin-bottom: 40px;
@@ -515,38 +515,45 @@ body.light-mode .theme-toggle-floating {
 
     .cta-content {
         max-width: 100%;
+        order: 1;
     }
 
     .cta-title {
         font-size: 1.75rem;
         margin-bottom: 12px;
+        text-align: left;  /* Alinhado à esquerda */
     }
 
     .cta-desc {
         font-size: 0.95rem;
         margin-bottom: 20px;
+        text-align: left;  /* Alinhado à esquerda */
     }
 
     .cta-btns {
-        justify-content: center;
+        justify-content: stretch;
         flex-wrap: wrap;
         gap: 12px;
+        order: 2;
+        width: 100%;
     }
 
     .cta-btns .btn-primary,
     .cta-btns .btn-secondary {
-        width: 100%;
+        width: 100%;  /* Preenchem toda extensão */
     }
 
     .cta-images {
-        flex-direction: row;
-        justify-content: center;
-        gap: 12px;
+        flex-direction: column;  /* Empilhamento vertical */
+        align-items: center;
+        gap: 16px;
+        order: 3;  /* Imagens após os botões */
     }
 
     .cta-image-placeholder {
-        width: 120px;
-        height: 150px;
+        width: 150px;
+        height: 150px;  /* Proporção 1:1 */
+        aspect-ratio: 1 / 1;
     }
 
     /* Footer - Stack vertical */
@@ -690,7 +697,8 @@ body.menu-open {
     }
 
     .event-img {
-        height: 100px;
+        height: auto;
+        aspect-ratio: 1 / 1;  /* Proporção 1:1 */
     }
 
     .event-content {
@@ -701,21 +709,9 @@ body.menu-open {
         font-size: 0.85rem;
     }
 
-    .event-venue {
-        font-size: 0.7rem;
-    }
-
-    .event-price {
-        font-size: 0.7rem;
-    }
-
-    .event-price strong {
-        font-size: 0.85rem;
-    }
-
     .event-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
+        padding: 8px 10px;
+        font-size: 0.75rem;
     }
 
     /* Feature cards */
@@ -733,8 +729,9 @@ body.menu-open {
     }
 
     .cta-image-placeholder {
-        width: 100px;
-        height: 130px;
+        width: 130px;
+        height: 130px;  /* Proporção 1:1 */
+        aspect-ratio: 1 / 1;
     }
 
     /* Footer */
