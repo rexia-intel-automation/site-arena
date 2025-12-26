@@ -8,7 +8,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u568843907_arenabrbweb');
 define('DB_USER', 'u568843907_gestaoarenaadm');
-define('DB_PASS', ''); // Adicione a senha do MySQL aqui
+define('DB_PASS', '@Senha@rena@21'); // Adicione a senha do MySQL aqui
 define('DB_CHARSET', 'utf8mb4');
 
 // Timezone
