@@ -111,7 +111,6 @@ body.light-mode {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
     transition: all 0.3s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -125,6 +124,23 @@ body.light-mode .theme-toggle-floating {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--light-border);
     box-shadow: 0 8px 32px rgba(0, 71, 187, 0.15);
+    color: var(--brb-blue);
+}
+
+.theme-icon {
+    transition: all 0.3s ease;
+    animation: iconFadeIn 0.3s ease-in-out;
+}
+
+@keyframes iconFadeIn {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
 }
 
 @media (max-width: 768px) {

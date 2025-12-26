@@ -6,18 +6,18 @@
 // Theme Toggle Function
 function toggleTheme() {
     const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    const themeText = document.getElementById('theme-text');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
 
     body.classList.toggle('light-mode');
 
     if (body.classList.contains('light-mode')) {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Modo Escuro';
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
         localStorage.setItem('theme', 'light');
     } else {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Modo Claro';
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
         localStorage.setItem('theme', 'dark');
     }
 }
@@ -36,11 +36,16 @@ function toggleMobileMenu() {
 // Load saved theme on page load
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
 
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
-        document.getElementById('theme-icon').textContent = '🌙';
-        document.getElementById('theme-text').textContent = 'Modo Escuro';
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
     }
 });
 
