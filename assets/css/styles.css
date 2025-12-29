@@ -791,6 +791,31 @@ body.light-mode nav {
     border-bottom: 1px solid var(--light-border);
 }
 
+/* Navbar scrolled state - CSS controla o visual */
+nav.scrolled {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode nav.scrolled {
+    box-shadow: 0 4px 30px rgba(0, 71, 187, 0.15);
+}
+
+/* Desktop - reduzir padding ao scrollar */
+@media (min-width: 1201px) {
+    nav.scrolled {
+        padding: 14px 60px;
+        transition: padding 0.3s ease;
+    }
+}
+
+/* Mobile - manter padding consistente */
+@media (max-width: 768px) {
+    nav.scrolled {
+        padding: 16px 20px; /* NÃO mudar padding em mobile */
+        /* Apenas shadow muda */
+    }
+}
+
 .logo {
     display: flex;
     align-items: center;
