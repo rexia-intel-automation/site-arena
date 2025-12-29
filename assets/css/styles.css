@@ -622,6 +622,39 @@ body.light-mode .theme-toggle-floating {
     .hero-visual {
         display: none;
     }
+
+    /* Touch Target Optimization - Apple HIG: min 44x44px, Google: min 48x48px */
+
+    /* Links de navegação mobile - garantir altura mínima */
+    .nav-links.active a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Botão de compra nos eventos */
+    .event-btn {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+
+    /* Social links no footer */
+    .social-link {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    /* Theme toggle - garantir mínimo */
+    .theme-toggle-floating {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    /* Mobile menu toggle (hamburger) */
+    .mobile-menu-toggle {
+        min-width: 48px;
+        min-height: 48px;
+    }
 }
 
 /* Slide In Animation */
