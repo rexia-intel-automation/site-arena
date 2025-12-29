@@ -81,10 +81,10 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
         </ul>
 
         <!-- Logo Central -->
-        <div class="logo">
+        <a href="#inicio" class="logo">
             <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
             <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
-        </div>
+        </a>
 
         <!-- Menu Direito -->
         <ul class="nav-links nav-links-right">
@@ -102,7 +102,7 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="hero-badge">
                 Maior complexo de eventos do Brasil
