@@ -1029,9 +1029,8 @@ body.light-mode .btn-secondary:hover {
 /* Hero Visual */
 .hero-visual {
     position: absolute;
-    right: 60px;
-    left: 60%;
-    top: 65%;
+    margin-top: 45%;
+    margin-left: 50%;
     transform: translateY(-50%);
     width: 480px;
     z-index: 1;
@@ -1236,6 +1235,7 @@ body.light-mode .float-info p {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 50px;
+    maregin-right: 100px;
 }
 
 .section-title {
@@ -1278,6 +1278,7 @@ body.light-mode .section-sub {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     position: relative;
+    margin-right: 100px;
 }
 
 .event-card {
@@ -1444,6 +1445,7 @@ body.light-mode .features {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-top: 50px;
+    margin-right: 100px;
     position: relative;
 }
 
@@ -1555,6 +1557,7 @@ body.light-mode .feature-desc {
     padding: 40px;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-right: 100px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -1608,7 +1611,7 @@ body.light-mode .feature-desc {
 
 .cta-image-placeholder {
     width: 160px;
-    height: 200px;
+    height: 160px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 2px dashed rgba(255, 255, 255, 0.3);
