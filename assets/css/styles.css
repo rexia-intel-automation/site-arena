@@ -340,7 +340,7 @@ body.light-mode .theme-toggle-floating {
     .hero-desc {
         font-size: 1rem;
         margin-bottom: 24px;
-        widht: 90%;
+        width: 90%;
     }
 
     .hero-btns {
@@ -381,7 +381,7 @@ body.light-mode .theme-toggle-floating {
 
     /* Events Grid - 2x2 Grid com cards simplificados */
     .events-grid {
-        widht: 100%;
+        width: 100%;
     }
 
     .event-card {
@@ -1215,8 +1215,7 @@ body.light-mode .float-info p {
 .tour,
 .cta {
     display: block;
-    width: 100%;
-    padding: 20px 60px;
+    width: 80%;
     position: relative;
     z-index: 2;
 }
@@ -1545,7 +1544,6 @@ body.light-mode .feature-desc {
     padding: 40px;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-right: 100px;
     position: relative;
     overflow: hidden;
     display: flex;
