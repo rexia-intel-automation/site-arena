@@ -1493,6 +1493,31 @@ body.light-mode .social-link {
     .hero {
         padding: 100px 20px 60px !important;
         min-height: 40vh;
+        flex-direction: column;
+    }
+
+    /* Hero content - flexbox para ordenar elementos */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Ordem dos elementos na hero */
+    .hero-badge {
+        order: 1;
+    }
+
+    .hero h1 {
+        order: 2;
+    }
+
+    .hero-desc {
+        order: 4;
+    }
+
+    .hero-btns {
+        order: 5;
     }
 
     /* .hero h1 - original linha 335 */
@@ -1815,7 +1840,44 @@ body.light-mode .social-link {
 
     /* .hero-visual - original linha 622 */
     .hero-visual {
+        position: static;
+        width: 98%;
+        margin: 0 1%;
+        transform: none;
+        order: 3; /* Aparece após o H1 (que tem order 2) */
+    }
+
+    /* Ocultar float cards no mobile */
+    .float-card {
         display: none;
+    }
+
+    /* Stadium card no mobile - apenas imagem */
+    .hero .stadium-card {
+        width: 100%;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    /* Remover glass effect do stadium card no mobile */
+    .hero .stadium-card::before {
+        display: none;
+    }
+
+    /* Ocultar informações do stadium no mobile */
+    .hero .stadium-info {
+        display: none;
+    }
+
+    /* Ajustar imagem do stadium */
+    .hero .stadium-img {
+        border-radius: 14px;
+        height: 200px;
+    }
+
+    /* Ajustar inner do stadium para remover padding */
+    .hero .stadium-inner {
+        border-radius: 14px;
     }
 
     /* Touch Target Optimization - original linha 629 */
