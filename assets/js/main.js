@@ -127,13 +127,12 @@ const navbar = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
+    const scrollThreshold = window.innerHeight * 0.1; // 10% da viewport (adaptativo)
 
-    if (currentScroll > 100) {
-        navbar.style.padding = '14px 60px';
-        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.2)';
+    if (currentScroll > scrollThreshold) {
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.padding = '20px 60px';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
 
     lastScroll = currentScroll;
