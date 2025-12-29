@@ -304,7 +304,7 @@ body.light-mode .mobile-menu-toggle span {
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 140px 60px 100px;
+    padding: 140px 20px 100px;
     position: relative;
 }
 
@@ -1481,10 +1481,19 @@ body.light-mode .social-link {
 
     /* Hero Section - original linha 330 */
     .hero {
-        padding: 100px 20px 60px !important;
+        padding: 50px 20px 60px !important;
         min-height: 40vh;
     }
 
+    /* .stadium-img - original linha 513*/
+   .stadium-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+}
+   
     /* .hero h1 - original linha 335 */
     .hero h1 {
         font-size: clamp(1.8rem, 7vw, 2.8rem);
@@ -1508,7 +1517,7 @@ body.light-mode .social-link {
     /* .btn-primary, .btn-secondary - original linha 352 */
     .btn-primary,
     .btn-secondary {
-        width: 80%;
+        width: 100%;
     }
 
     /* Sections - original linha 358 */
@@ -1679,6 +1688,7 @@ body.light-mode .social-link {
         gap: 24px;
         align-self: center;
         width: 100%;
+        margin-top: 0px;
     }
 
     /* .cta-content - original linha 511 */
@@ -1798,7 +1808,7 @@ body.light-mode .social-link {
     footer {
         max-width: 100%;
         overflow-x: hidden;
-        padding: 70px 0px 35px
+        padding: 70px 20px 35px
     }
 
     /* .view-all - original linha 617 */
