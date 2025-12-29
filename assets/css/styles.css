@@ -1,9 +1,3 @@
-Segue o CSS completo já ajustado para:
-
-* `float-card` sempre acima de tudo (z-index alto).
-* Sobreposição máxima de **20px** para dentro do `stadium-card` (usando `translateX(calc(-100% + 20px))` em todos os frames da animação).
-
-```css
 /* ===================================
    Arena BRB Mané Garrincha - Styles
    =================================== */
@@ -148,515 +142,6 @@ body.light-mode .theme-toggle-floating {
     }
 }
 
-@media (max-width: 768px) {
-    .theme-toggle-floating {
-        top: 80px;
-        right: 20px;
-        width: 48px;
-        height: 48px;
-        font-size: 1.2rem;
-    }
-
-    /* NAVBAR MOBILE - Simplified layout */
-    nav {
-        padding: 16px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-
-    /* HIDE desktop nav-links in mobile */
-    .nav-links-left,
-    .nav-links-right {
-        display: none !important;
-    }
-
-    /* Logo centered */
-    .logo {
-        position: relative;
-        left: auto;
-        transform: none;
-        order: 0;
-        flex-shrink: 0;
-    }
-
-    .logo-img {
-        height: 40px;
-        max-width: 120px;
-        object-fit: contain;
-    }
-
-    /* Mobile Toggle - visible and positioned */
-    .mobile-menu-toggle {
-        display: flex !important;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1002;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 10px;
-        background: transparent;
-        border: none;
-    }
-
-    .mobile-menu-toggle span {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background: white;
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-
-    body.light-mode .mobile-menu-toggle span {
-        background: var(--brb-blue);
-    }
-
-    /* Mobile Menu Overlay */
-    .mobile-menu-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(4px);
-        z-index: 998;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .mobile-menu-overlay.active {
-        display: block;
-        opacity: 1;
-    }
-
-    /* Mobile Menu Links - Shown when active */
-    .nav-links.active {
-        display: flex !important;
-        position: fixed;
-        right: 0;
-        width: 280px;
-        max-width: 80vw;
-        background: rgba(4, 8, 15, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 0;
-        gap: 0;
-        z-index: 999;
-        overflow-y: auto;
-        transform: translateX(0);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-right: 1px solid var(--glass-border);
-    }
-
-    /* Menu esquerdo aparece primeiro */
-    .nav-links-left.active {
-        top: 80px;
-        padding-top: 0;
-    }
-
-    /* Menu direito aparece logo abaixo */
-    .nav-links-right.active {
-        top: calc(80px + 171px); /* 80px header + 3 items * 57px cada */
-        padding-top: 0;
-    }
-
-    body.light-mode .nav-links.active {
-        background: rgba(248, 250, 252, 0.98);
-    }
-
-    .nav-links.active li {
-        width: 100%;
-        padding: 0;
-        border-bottom: 1px solid var(--glass-border);
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    body.light-mode .nav-links.active li {
-        border-bottom: 1px solid var(--light-border);
-    }
-
-    .nav-links.active li:last-child {
-        border-bottom: 1px solid var(--glass-border);
-    }
-
-    /* Remove border do último item do menu direito */
-    .nav-links-right.active li:last-child {
-        border-bottom: none;
-    }
-
-    .nav-links.active a {
-        display: block;
-        width: 100%;
-        padding: 18px 24px;
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 600;
-        transition: all 0.2s ease;
-    }
-
-    .nav-links.active a:hover {
-        background: rgba(255, 255, 255, 0.05);
-        padding-left: 32px;
-    }
-
-    body.light-mode .nav-links.active a:hover {
-        background: rgba(0, 71, 187, 0.05);
-    }
-
-    /* Hamburger Animation */
-    .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* CRITICAL MOBILE LAYOUT FIXES */
-
-    /* Hero Section - Reduzir padding lateral */
-    .hero {
-        padding: 100px 20px 60px !important;
-        min-height: 40vh;
-    }
-
-    .hero h1 {
-        font-size: clamp(1.8rem, 7vw, 2.8rem);
-        letter-spacing: -1px;
-    }
-
-    .hero-desc {
-        font-size: 1rem;
-        margin-bottom: 24px;
-        width: 90%;
-    }
-
-    .hero-btns {
-        flex-direction: column;
-        width: 100%;
-        gap: 12px;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 80%;
-    }
-
-    /* Sections - Padding reduzido para evitar scroll horizontal */
-    .events,
-    .features,
-    .tour,
-    .cta {
-        padding: 40px 20px !important;
-    }
-
-    /* Section Titles - Escala responsiva */
-    .section-title {
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
-    }
-
-    .section-sub {
-        font-size: 0.95rem;
-    }
-
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 30px;
-    }
-
-    /* Events Grid - 2x2 Grid com cards simplificados */
-    .events-grid {
-        width: 100%;
-    }
-
-    .event-card {
-        border-radius: 14px;
-    }
-
-    .event-img {
-        height: auto;
-        aspect-ratio: 1 / 1;  /* Proporção 1:1 */
-    }
-
-    .event-date {
-        padding: 6px 10px;
-        border-radius: 6px;
-        top: 8px;
-        left: 8px;
-    }
-
-    .event-date .day {
-        font-size: 1.1rem;
-    }
-
-    .event-date .month {
-        font-size: 0.6rem;
-    }
-
-    .event-cat {
-        top: 8px;
-        right: 8px;
-        padding: 4px 8px;
-        font-size: 0.6rem;
-        border-radius: 4px;
-    }
-
-    .event-content {
-        padding: 12px;
-    }
-
-    .event-title {
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-        line-height: 1.2;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-
-    /* Ocultar localização e preço em mobile */
-    .event-venue,
-    .event-price {
-        display: none;
-    }
-
-    .event-footer {
-        padding-top: 0;
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-        border-top: none;
-    }
-
-    .event-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-        width: 100%;
-        text-align: center;
-        border-radius: 6px;
-    }
-
-    /* Features Grid - 1 coluna em mobile */
-    .features-grid {
-        left: -5.25%;
-    }
-
-    .feature-card {
-        padding: 20px;
-        text-align: center;
-    }
-
-    .feature-icon {
-        width: 44px;
-        height: 44px;
-        margin-bottom: 12px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .feature-title {
-        font-size: 1rem;
-        margin-bottom: 0;
-    }
-
-    /* Ocultar descrição em mobile */
-    .feature-desc {
-        display: none;
-    }
-
-    /* Tour Section */
-    .tour-container {
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .tour-card {
-        padding: 0;
-        left: -5.5%;
-    }
-
-    .tour-image {
-        max-height: 300px;
-        border-radius: 14px;
-        width: 100%;
-        object-fit: contain;
-    }
-
-    /* CTA Card - Layout vertical */
-    .cta-card {
-        flex-direction: column;
-        text-align: left;  /* Alinhado à esquerda */
-        gap: 24px;
-        align-self: center;
-        width: 70%;
-    }
-
-    .cta-content {
-        max-width: 100%;
-        order: 1;
-    }
-
-    .cta-title {
-        font-size: 1.75rem;
-        margin-bottom: 12px;
-        text-align: left;  /* Alinhado à esquerda */
-    }
-
-    .cta-desc {
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-        text-align: left;  /* Alinhado à esquerda */
-    }
-
-    .cta-btns {
-        justify-content: stretch;
-        flex-wrap: wrap;
-        gap: 12px;
-        order: 2;
-        width: 100%;
-    }
-
-    .cta-btns .btn-primary,
-    .cta-btns .btn-secondary {
-        width: 100%;  /* Preenchem toda extensão */
-    }
-
-    .cta-images {
-        flex-direction: column;  /* Empilhamento vertical */
-        align-items: center;
-        gap: 16px;
-        order: 3;  /* Imagens após os botões */
-    }
-
-    .cta-image-placeholder {
-        width: 150px;
-        height: 150px;  /* Proporção 1:1 */
-        aspect-ratio: 1 / 1;
-    }
-
-    /* Footer - Stack vertical */
-    footer {
-        
-    }
-
-    .footer-grid {
-        position: relative;
-        right: 15%;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-        padding-top: 25px;
-    }
-
-    /* Stadium Card - Ajustar para mobile */
-    .stadium-card {
-        padding: 16px;
-    }
-
-    .stadium-img {
-        height: 160px;
-    }
-
-    .stadium-info {
-        padding: 20px;
-    }
-
-    .stadium-title {
-        font-size: 1.1rem;
-    }
-
-    .stadium-stats {
-        gap: 12px;
-    }
-
-    .stat-val {
-        font-size: 1.3rem;
-    }
-
-    .stat-label {
-        font-size: 0.65rem;
-    }
-
-    /* Prevenir overflow horizontal */
-    body {
-        overflow-x: hidden;
-        max-width: 100vw;
-    }
-
-    .hero,
-    .events,
-    .features,
-    .tour,
-    .cta,
-    footer {
-        max-width: 90%;
-        overflow-x: hidden;
-    }
-
-    /* Ajustar view-all link */
-    .view-all {
-        font-size: 0.9rem;
-    }
-
-    /* Hero visual - hide in mobile */
-    .hero-visual {
-        display: none;
-    }
-
-    /* Touch Target Optimization - Apple HIG: min 44x44px, Google: min 48x48px */
-
-    /* Links de navegação mobile - garantir altura mínima */
-    .nav-links.active a {
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Botão de compra nos eventos */
-    .event-btn {
-        min-height: 44px;
-        padding: 12px 16px;
-    }
-
-    /* Social links no footer */
-    .social-link {
-        min-width: 48px;
-        min-height: 48px;
-    }
-
-    /* Theme toggle - garantir mínimo */
-    .theme-toggle-floating {
-        min-width: 48px;
-        min-height: 48px;
-    }
-
-    /* Mobile menu toggle (hamburger) */
-    .mobile-menu-toggle {
-        min-width: 48px;
-        min-height: 48px;
-    }
-}
-
 /* Slide In Animation */
 @keyframes slideInLeft {
     to {
@@ -668,104 +153,6 @@ body.light-mode .theme-toggle-floating {
 /* Prevent body scroll when menu is open */
 body.menu-open {
     overflow: hidden;
-}
-
-/* Smartphones Pequenos (<= 375px) - iPhone SE, etc */
-@media (max-width: 375px) {
-    /* Navbar ultra compacto */
-    nav {
-        padding: 14px 16px;
-    }
-
-    .logo-img {
-        height: 45px;
-    }
-
-    /* Theme toggle menor */
-    .theme-toggle-floating {
-        width: 44px;
-        height: 44px;
-        right: 16px;
-        top: 75px;
-    }
-
-    /* Hero ainda mais compacto */
-    .hero {
-        padding: 90px 16px 50px !important;
-    }
-
-    .hero h1 {
-        font-size: clamp(1.6rem, 8vw, 2.2rem);
-    }
-
-    .hero-desc {
-        font-size: 0.95rem;
-    }
-
-    /* Sections padding mínimo */
-    .events,
-    .features,
-    .tour,
-    .cta {
-        padding: 30px 16px !important;
-    }
-
-    /* Section titles menores */
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    /* Events grid - 2 colunas compactas */
-    .events-grid {
-        gap: 10px;
-    }
-
-    .event-card {
-        border-radius: 12px;
-    }
-
-    .event-img {
-        height: auto;
-        aspect-ratio: 1 / 1;  /* Proporção 1:1 */
-    }
-
-    .event-content {
-        padding: 10px;
-    }
-
-    .event-title {
-        font-size: 0.85rem;
-    }
-
-    .event-btn {
-        padding: 8px 10px;
-        font-size: 0.75rem;
-    }
-
-    /* Feature cards */
-    .feature-card {
-        padding: 16px;
-    }
-
-    /* CTA */
-    .cta-card {
-        padding: 30px 20px;
-    }
-
-    .cta-title {
-        font-size: 1.5rem;
-    }
-
-    .cta-image-placeholder {
-        width: 130px;
-        height: 130px;  /* Proporção 1:1 */
-        aspect-ratio: 1 / 1;
-    }
-
-    /* Footer */
-    footer {
-        padding: 40px 16px 25px;
-    }
 }
 
 /* Navigation */
@@ -798,22 +185,6 @@ nav.scrolled {
 
 body.light-mode nav.scrolled {
     box-shadow: 0 4px 30px rgba(0, 71, 187, 0.15);
-}
-
-/* Desktop - reduzir padding ao scrollar */
-@media (min-width: 1201px) {
-    nav.scrolled {
-        padding: 14px 60px;
-        transition: padding 0.3s ease;
-    }
-}
-
-/* Mobile - manter padding consistente */
-@media (max-width: 768px) {
-    nav.scrolled {
-        padding: 16px 20px; /* NÃO mudar padding em mobile */
-        /* Apenas shadow muda */
-    }
 }
 
 .logo {
@@ -1130,8 +501,7 @@ body.light-mode .stadium-card::before {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: inherit; /* ou um valor fixo igual ao do card, ex: 28px */
-
+    border-radius: inherit;
 }
 
 .stadium-img svg {
@@ -1142,8 +512,8 @@ body.light-mode .stadium-card::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-   border-radius: inherit;
-   display: block;
+    border-radius: inherit;
+    display: block;
 }
 
 .stadium-info {
@@ -1194,10 +564,10 @@ body.light-mode .stat-label {
     color: rgba(15, 23, 42, 0.5);
 }
 
-/* Float Cards – acima de tudo, invasão máxima 20px no stadium */
+/* Float Cards */
 .float-card {
     position: absolute;
-    left: 0; /* referência: borda esquerda do stadium-card */
+    left: 0;
     background: var(--glass);
     backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
@@ -1208,7 +578,7 @@ body.light-mode .stat-label {
     gap: 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     animation: float 5s ease-in-out infinite;
-    z-index: 10; /* acima de tudo na hero-visual */
+    z-index: 10;
 }
 
 body.light-mode .float-card {
@@ -1218,17 +588,15 @@ body.light-mode .float-card {
     box-shadow: 0 20px 50px rgba(0, 71, 187, 0.15);
 }
 
-/* Posição vertical de cada card (horizontal é controlada via transform) */
 .float-card-1 {
     top: 40px;
 }
 
 .float-card-2 {
-    top: 180px; /* 40px + ~72px altura do card 1 + 20px de espaçamento */
+    top: 180px;
     animation-delay: 0.50s;
 }
 
-/* Ícone e textos dos floats */
 .float-icon {
     width: 38px;
     height: 38px;
@@ -1257,13 +625,12 @@ body.light-mode .float-info p {
     color: rgba(15, 23, 42, 0.6);
 }
 
-/* Float: sempre com translateX(-100% + 20px) => só 20px entram no card */
 @keyframes float {
     0%, 100% {
-        transform: translate(calc(-100% + 20px), 0);   /* invasão horizontal fixa de 20px */
+        transform: translate(calc(-100% + 20px), 0);
     }
     50% {
-        transform: translate(calc(-100% + 20px), -12px); /* flutua só no eixo Y */
+        transform: translate(calc(-100% + 20px), -12px);
     }
 }
 
@@ -1283,7 +650,6 @@ body.light-mode .float-info p {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 50px;
-    maregin-right: 100px;
 }
 
 .section-title {
@@ -1861,25 +1227,6 @@ body.light-mode .social-link {
     transform: translateY(-3px);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-    .hero-visual {
-        display: none;
-    }
-
-    .events-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -1894,4 +1241,708 @@ body.light-mode .social-link {
 
 .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===================================
+   RESPONSIVE MEDIA QUERIES
+   Consolidado e organizado
+   =================================== */
+
+/* Desktop - min-width: 1201px
+   Referências originais: linha 804-809 */
+@media (min-width: 1201px) {
+    /* nav.scrolled - original linha 805 */
+    nav.scrolled {
+        padding: 14px 60px;
+        transition: padding 0.3s ease;
+    }
+}
+
+/* Tablet - max-width: 1200px
+   Referências originais: linha 1865-1881 */
+@media (max-width: 1200px) {
+    /* .hero-visual - original linha 1866 */
+    .hero-visual {
+        display: none;
+    }
+
+    /* .events-grid - original linha 1870 */
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* .features-grid - original linha 1874 */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* .footer-grid - original linha 1878 */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile - max-width: 768px
+   Referências originais: linha 151-658 e linha 812-817 (duplicado removido) */
+@media (max-width: 768px) {
+    /* .theme-toggle-floating - original linha 152 */
+    .theme-toggle-floating {
+        top: 80px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    /* NAVBAR MOBILE - original linha 161 */
+    nav {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* nav.scrolled - original linha 813 (consolidado aqui) */
+    nav.scrolled {
+        padding: 16px 20px;
+    }
+
+    /* HIDE desktop nav-links - original linha 170 */
+    .nav-links-left,
+    .nav-links-right {
+        display: none !important;
+    }
+
+    /* Logo centered - original linha 176 */
+    .logo {
+        position: relative;
+        left: auto;
+        transform: none;
+        order: 0;
+        flex-shrink: 0;
+    }
+
+    /* .logo-img - original linha 184 */
+    .logo-img {
+        height: 40px;
+        max-width: 120px;
+        object-fit: contain;
+    }
+
+    /* Mobile Toggle - original linha 191 */
+    .mobile-menu-toggle {
+        display: flex !important;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 10px;
+        background: transparent;
+        border: none;
+    }
+
+    /* .mobile-menu-toggle span - original linha 206 */
+    .mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: white;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    /* body.light-mode .mobile-menu-toggle span - original linha 215 */
+    body.light-mode .mobile-menu-toggle span {
+        background: var(--brb-blue);
+    }
+
+    /* Mobile Menu Overlay - original linha 220 */
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* .mobile-menu-overlay.active - original linha 234 */
+    .mobile-menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Mobile Menu Links - original linha 240 */
+    .nav-links.active {
+        display: flex !important;
+        position: fixed;
+        right: 0;
+        width: 280px;
+        max-width: 80vw;
+        background: rgba(4, 8, 15, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        z-index: 999;
+        overflow-y: auto;
+        transform: translateX(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--glass-border);
+    }
+
+    /* .nav-links-left.active - original linha 259 */
+    .nav-links-left.active {
+        top: 80px;
+        padding-top: 0;
+    }
+
+    /* .nav-links-right.active - original linha 265 */
+    .nav-links-right.active {
+        top: calc(80px + 171px);
+        padding-top: 0;
+    }
+
+    /* body.light-mode .nav-links.active - original linha 270 */
+    body.light-mode .nav-links.active {
+        background: rgba(248, 250, 252, 0.98);
+    }
+
+    /* .nav-links.active li - original linha 274 */
+    .nav-links.active li {
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid var(--glass-border);
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* body.light-mode .nav-links.active li - original linha 282 */
+    body.light-mode .nav-links.active li {
+        border-bottom: 1px solid var(--light-border);
+    }
+
+    /* .nav-links.active li:last-child - original linha 286 */
+    .nav-links.active li:last-child {
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    /* .nav-links-right.active li:last-child - original linha 291 */
+    .nav-links-right.active li:last-child {
+        border-bottom: none;
+    }
+
+    /* .nav-links.active a - original linha 295 */
+    .nav-links.active a {
+        display: block;
+        width: 100%;
+        padding: 18px 24px;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    /* .nav-links.active a:hover - original linha 305 */
+    .nav-links.active a:hover {
+        background: rgba(255, 255, 255, 0.05);
+        padding-left: 32px;
+    }
+
+    /* body.light-mode .nav-links.active a:hover - original linha 310 */
+    body.light-mode .nav-links.active a:hover {
+        background: rgba(0, 71, 187, 0.05);
+    }
+
+    /* Hamburger Animation - original linha 315 */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Hero Section - original linha 330 */
+    .hero {
+        padding: 100px 20px 60px !important;
+        min-height: 40vh;
+    }
+
+    /* .hero h1 - original linha 335 */
+    .hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+        letter-spacing: -1px;
+    }
+
+    /* .hero-desc - original linha 340 */
+    .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 24px;
+        width: 90%;
+    }
+
+    /* .hero-btns - original linha 346 */
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    /* .btn-primary, .btn-secondary - original linha 352 */
+    .btn-primary,
+    .btn-secondary {
+        width: 80%;
+    }
+
+    /* Sections - original linha 358 */
+    .events,
+    .features,
+    .tour,
+    .cta {
+        padding: 40px 20px !important;
+    }
+
+    /* Section Titles - original linha 366 */
+    .section-title {
+        font-size: 1.75rem;
+        letter-spacing: -0.5px;
+    }
+
+    /* .section-sub - original linha 371 */
+    .section-sub {
+        font-size: 0.95rem;
+    }
+
+    /* .section-header - original linha 375 */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+    /* Events Grid - original linha 383 */
+    .events-grid {
+        width: 100%;
+    }
+
+    /* .event-card - original linha 387 */
+    .event-card {
+        border-radius: 14px;
+    }
+
+    /* .event-img - original linha 391 */
+    .event-img {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* .event-date - original linha 396 */
+    .event-date {
+        padding: 6px 10px;
+        border-radius: 6px;
+        top: 8px;
+        left: 8px;
+    }
+
+    /* .event-date .day - original linha 403 */
+    .event-date .day {
+        font-size: 1.1rem;
+    }
+
+    /* .event-date .month - original linha 407 */
+    .event-date .month {
+        font-size: 0.6rem;
+    }
+
+    /* .event-cat - original linha 411 */
+    .event-cat {
+        top: 8px;
+        right: 8px;
+        padding: 4px 8px;
+        font-size: 0.6rem;
+        border-radius: 4px;
+    }
+
+    /* .event-content - original linha 419 */
+    .event-content {
+        padding: 12px;
+    }
+
+    /* .event-title - original linha 423 */
+    .event-title {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        line-height: 1.2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    /* Ocultar localização e preço - original linha 435 */
+    .event-venue,
+    .event-price {
+        display: none;
+    }
+
+    /* .event-footer - original linha 440 */
+    .event-footer {
+        padding-top: 0;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        border-top: none;
+    }
+
+    /* .event-btn - original linha 448 */
+    .event-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 6px;
+    }
+
+    /* Features Grid - original linha 457 */
+    .features-grid {
+        left: -5.25%;
+    }
+
+    /* .feature-card - original linha 461 */
+    .feature-card {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* .feature-icon - original linha 466 */
+    .feature-icon {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 12px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* .feature-title - original linha 474 */
+    .feature-title {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    /* Ocultar descrição - original linha 480 */
+    .feature-desc {
+        display: none;
+    }
+
+    /* Tour Section - original linha 485 */
+    .tour-container {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    /* .tour-card - original linha 490 */
+    .tour-card {
+        padding: 0;
+        left: -5.5%;
+    }
+
+    /* .tour-image - original linha 495 */
+    .tour-image {
+        max-height: 300px;
+        border-radius: 14px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    /* CTA Card - original linha 503 */
+    .cta-card {
+        flex-direction: column;
+        text-align: left;
+        gap: 24px;
+        align-self: center;
+        width: 70%;
+    }
+
+    /* .cta-content - original linha 511 */
+    .cta-content {
+        max-width: 100%;
+        order: 1;
+    }
+
+    /* .cta-title - original linha 516 */
+    .cta-title {
+        font-size: 1.75rem;
+        margin-bottom: 12px;
+        text-align: left;
+    }
+
+    /* .cta-desc - original linha 522 */
+    .cta-desc {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    /* .cta-btns - original linha 528 */
+    .cta-btns {
+        justify-content: stretch;
+        flex-wrap: wrap;
+        gap: 12px;
+        order: 2;
+        width: 100%;
+    }
+
+    /* .cta-btns .btn-primary, .btn-secondary - original linha 536 */
+    .cta-btns .btn-primary,
+    .cta-btns .btn-secondary {
+        width: 100%;
+    }
+
+    /* .cta-images - original linha 541 */
+    .cta-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        order: 3;
+    }
+
+    /* .cta-image-placeholder - original linha 548 */
+    .cta-image-placeholder {
+        width: 150px;
+        height: 150px;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* .footer-grid - original linha 559 */
+    .footer-grid {
+        position: relative;
+        right: 15%;
+    }
+
+    /* .footer-bottom - original linha 564 */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding-top: 25px;
+    }
+
+    /* Stadium Card - original linha 572 */
+    .stadium-card {
+        padding: 16px;
+    }
+
+    /* .stadium-img - original linha 576 */
+    .stadium-img {
+        height: 160px;
+    }
+
+    /* .stadium-info - original linha 580 */
+    .stadium-info {
+        padding: 20px;
+    }
+
+    /* .stadium-title - original linha 584 */
+    .stadium-title {
+        font-size: 1.1rem;
+    }
+
+    /* .stadium-stats - original linha 588 */
+    .stadium-stats {
+        gap: 12px;
+    }
+
+    /* .stat-val - original linha 592 */
+    .stat-val {
+        font-size: 1.3rem;
+    }
+
+    /* .stat-label - original linha 596 */
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    /* Prevenir overflow - original linha 601 */
+    body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
+    /* original linha 606 */
+    .hero,
+    .events,
+    .features,
+    .tour,
+    .cta,
+    footer {
+        max-width: 90%;
+        overflow-x: hidden;
+    }
+
+    /* .view-all - original linha 617 */
+    .view-all {
+        font-size: 0.9rem;
+    }
+
+    /* .hero-visual - original linha 622 */
+    .hero-visual {
+        display: none;
+    }
+
+    /* Touch Target Optimization - original linha 629 */
+    .nav-links.active a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* .event-btn - original linha 636 */
+    .event-btn {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+
+    /* .social-link - original linha 642 */
+    .social-link {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    /* .theme-toggle-floating - original linha 648 */
+    .theme-toggle-floating {
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    /* .mobile-menu-toggle - original linha 654 */
+    .mobile-menu-toggle {
+        min-width: 48px;
+        min-height: 48px;
+    }
+}
+
+/* Mobile XS - max-width: 375px (iPhone SE, etc)
+   Referências originais: linha 674-769 */
+@media (max-width: 375px) {
+    /* nav - original linha 676 */
+    nav {
+        padding: 14px 16px;
+    }
+
+    /* .logo-img - original linha 680 */
+    .logo-img {
+        height: 45px;
+    }
+
+    /* .theme-toggle-floating - original linha 685 */
+    .theme-toggle-floating {
+        width: 44px;
+        height: 44px;
+        right: 16px;
+        top: 75px;
+    }
+
+    /* .hero - original linha 693 */
+    .hero {
+        padding: 90px 16px 50px !important;
+    }
+
+    /* .hero h1 - original linha 697 */
+    .hero h1 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+    }
+
+    /* .hero-desc - original linha 701 */
+    .hero-desc {
+        font-size: 0.95rem;
+    }
+
+    /* Sections - original linha 706 */
+    .events,
+    .features,
+    .tour,
+    .cta {
+        padding: 30px 16px !important;
+    }
+
+    /* .section-title - original linha 714 */
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* .events-grid - original linha 719 */
+    .events-grid {
+        gap: 10px;
+    }
+
+    /* .event-card - original linha 723 */
+    .event-card {
+        border-radius: 12px;
+    }
+
+    /* .event-img - original linha 727 */
+    .event-img {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* .event-content - original linha 732 */
+    .event-content {
+        padding: 10px;
+    }
+
+    /* .event-title - original linha 736 */
+    .event-title {
+        font-size: 0.85rem;
+    }
+
+    /* .event-btn - original linha 740 */
+    .event-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* .feature-card - original linha 746 */
+    .feature-card {
+        padding: 16px;
+    }
+
+    /* .cta-card - original linha 751 */
+    .cta-card {
+        padding: 30px 20px;
+    }
+
+    /* .cta-title - original linha 755 */
+    .cta-title {
+        font-size: 1.5rem;
+    }
+
+    /* .cta-image-placeholder - original linha 759 */
+    .cta-image-placeholder {
+        width: 130px;
+        height: 130px;
+        aspect-ratio: 1 / 1;
+    }
+
+    /* footer - original linha 766 */
+    footer {
+        padding: 40px 16px 25px;
+    }
 }
