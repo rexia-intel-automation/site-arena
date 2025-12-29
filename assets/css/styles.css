@@ -1065,6 +1065,7 @@ body.light-mode .feature-desc {
     border: none;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
+    width: 100%;
 }
 
 .btn-white:hover {
@@ -1083,6 +1084,7 @@ body.light-mode .feature-desc {
     transition: all 0.3s;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
+    width: 100%;
 }
 
 .btn-outline:hover {
@@ -1755,8 +1757,7 @@ body.light-mode .social-link {
 
     /* .footer-grid - original linha 559 */
     .footer-grid {
-        position: relative;
-        right: 15%;
+        position: relative;        
     }
 
     /* .footer-bottom - original linha 564 */
