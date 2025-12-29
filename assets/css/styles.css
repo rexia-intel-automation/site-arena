@@ -1272,7 +1272,9 @@ body.light-mode .section-sub {
 .events-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 20px;
+    position: relative;
+    left: -5.25%;
 }
 
 .event-card {
