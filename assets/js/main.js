@@ -268,26 +268,6 @@ function showError(input, message) {
     }, 3000);
 }
 
-// Handle window resize for responsive adjustments
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        // Adjust navbar padding on resize
-        const navbar = document.querySelector('nav');
-        if (window.innerWidth <= 768) {
-            navbar.style.padding = '16px 24px';
-        } else {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100) {
-                navbar.style.padding = '14px 60px';
-            } else {
-                navbar.style.padding = '20px 60px';
-            }
-        }
-    }, 250);
-});
-
 // Performance: Debounce function for scroll events
 function debounce(func, wait) {
     let timeout;
