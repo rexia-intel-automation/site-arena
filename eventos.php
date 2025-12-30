@@ -162,6 +162,19 @@ $mesesCompletos = [
             background-size: cover;
             background-position: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-event-image.no-image {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .featured-event-image .placeholder-icon {
+            width: 120px;
+            height: 120px;
+            opacity: 0.3;
         }
 
         .featured-event-content {
@@ -344,6 +357,16 @@ $mesesCompletos = [
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .event-img.no-image {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .event-img .placeholder-icon {
+            width: 60px;
+            height: 60px;
+            opacity: 0.3;
         }
 
         .event-date {
@@ -589,7 +612,13 @@ $mesesCompletos = [
         ?>
         <section class="featured-event-section">
             <div class="featured-event-card">
-                <div class="featured-event-image" style="background-image: url('/<?= htmlspecialchars($eventoDestaque['imagem_destaque']) ?>');">
+                <div class="featured-event-image <?= empty($eventoDestaque['imagem_destaque']) ? 'no-image' : '' ?>" <?= !empty($eventoDestaque['imagem_destaque']) ? 'style="background-image: url(\'/' . htmlspecialchars($eventoDestaque['imagem_destaque']) . '\');"' : '' ?>>
+                    <?php if (empty($eventoDestaque['imagem_destaque'])): ?>
+                        <svg class="placeholder-icon" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="15" rx="2"/>
+                            <path d="M17 2l-3 5-3-5M9 22v-5M15 22v-5"/>
+                        </svg>
+                    <?php endif; ?>
                 </div>
                 <div class="featured-event-content">
                     <h2 class="featured-event-title"><?= htmlspecialchars($eventoDestaque['titulo']) ?></h2>
@@ -700,7 +729,13 @@ $mesesCompletos = [
                     $mes = $mesesPt[$mesNum];
                     ?>
                     <div class="event-card">
-                        <div class="event-img" style="background-image: url('/<?= htmlspecialchars($evento['imagem_destaque']) ?>');">
+                        <div class="event-img <?= empty($evento['imagem_destaque']) ? 'no-image' : '' ?>" <?= !empty($evento['imagem_destaque']) ? 'style="background-image: url(\'/' . htmlspecialchars($evento['imagem_destaque']) . '\');"' : '' ?>>
+                            <?php if (empty($evento['imagem_destaque'])): ?>
+                                <svg class="placeholder-icon" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <rect x="2" y="7" width="20" height="15" rx="2"/>
+                                    <path d="M17 2l-3 5-3-5M9 22v-5M15 22v-5"/>
+                                </svg>
+                            <?php endif; ?>
                             <div class="event-date">
                                 <span class="day"><?= $dia ?></span>
                                 <span class="month"><?= $mes ?></span>
