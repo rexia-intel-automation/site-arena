@@ -215,7 +215,22 @@ class Evento {
             $params['busca'] = '%' . $filtros['busca'] . '%';
         }
 
-        $sql .= " ORDER BY e.data_evento DESC, e.criado_em DESC";
+        if (!empty($filtros['local_id'])) {
+            $sql .= " AND e.local_id = :local_id";
+            $params['local_id'] = $filtros['local_id'];
+        }
+
+        if (!empty($filtros['data_inicio'])) {
+            $sql .= " AND e.data_evento >= :data_inicio";
+            $params['data_inicio'] = $filtros['data_inicio'];
+        }
+
+        if (!empty($filtros['data_fim'])) {
+            $sql .= " AND e.data_evento < :data_fim";
+            $params['data_fim'] = $filtros['data_fim'];
+        }
+
+        $sql .= " ORDER BY e.data_evento ASC, e.criado_em DESC";
 
         if ($limit) {
             $sql .= " LIMIT :limit OFFSET :offset";
