@@ -76,7 +76,7 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
         <!-- Menu Esquerdo -->
         <ul class="nav-links nav-links-left">
             <li><a href="#inicio">Início</a></li>
-            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="eventos">Eventos</a></li>
             <li><a href="#espacos">Espaços</a></li>
         </ul>
 
@@ -207,7 +207,7 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
                 <h2 class="section-title">Próximos <span>Eventos</span></h2>
                 <p class="section-sub">Shows, jogos e experiências imperdíveis</p>
             </div>
-            <a href="#" class="view-all">
+            <a href="eventos" class="view-all">
                 Ver todos
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -416,7 +416,7 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
             <div class="footer-col">
                 <h4>Arena</h4>
                 <ul>
-                    <li><a href="#eventos">Agenda</a></li>
+                    <li><a href="eventos">Agenda</a></li>
                     <li><a href="#espacos">Espaços</a></li>
                     <li><a href="#tour">Tour Virtual</a></li>
                 </ul>
