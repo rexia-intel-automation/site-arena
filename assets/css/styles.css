@@ -961,6 +961,7 @@ body.light-mode .feature-desc {
     padding: 16px;
     overflow: hidden;
     position: relative;
+    right: -2%;
 }
 
 .tour-card .stadium-inner {
@@ -1713,7 +1714,7 @@ body.light-mode .social-link {
     .tour-container {
        width: 100%;
        position: relative;
-       left: -10%;
+       left: -3%;
     }
 
     /* .tour-card - original linha 490 */
@@ -1723,8 +1724,8 @@ body.light-mode .social-link {
 
     /* .tour-image - original linha 495 */
     .tour-image {
-        max-height: 300px;
-        border-radius: 14px;
+        max-height: 400px;
+        border-radius: inherit;
         width: 100%;
         object-fit: contain;
     }
