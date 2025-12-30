@@ -318,20 +318,20 @@ $categorias = $categoriaModel->getByTipo('evento');
     <!-- Navigation -->
     <nav id="navbar">
         <ul class="nav-links nav-links-left">
-            <li><a href="index.php#inicio">Início</a></li>
-            <li><a href="eventos.php" class="active">Eventos</a></li>
-            <li><a href="index.php#espacos">Espaços</a></li>
+            <li><a href="/#inicio">Início</a></li>
+            <li><a href="eventos" class="active">Eventos</a></li>
+            <li><a href="/#espacos">Espaços</a></li>
         </ul>
 
-        <a href="index.php" class="logo">
+        <a href="/" class="logo">
             <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
             <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
         </a>
 
         <ul class="nav-links nav-links-right">
-            <li><a href="index.php#noticias">Notícias</a></li>
-            <li><a href="index.php#tour">Tour</a></li>
-            <li><a href="index.php#contato">Contato</a></li>
+            <li><a href="/#noticias">Notícias</a></li>
+            <li><a href="/#tour">Tour</a></li>
+            <li><a href="/#contato">Contato</a></li>
         </ul>
 
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -349,7 +349,7 @@ $categorias = $categoriaModel->getByTipo('evento');
 
     <!-- Filters Section -->
     <section class="filters-section">
-        <form action="eventos.php" method="GET" class="filters-container">
+        <form action="eventos" method="GET" class="filters-container">
             <div class="filter-group">
                 <label class="filter-label">Categoria</label>
                 <select name="categoria" class="filter-select">
@@ -382,7 +382,7 @@ $categorias = $categoriaModel->getByTipo('evento');
                     Filtrar
                 </button>
                 <?php if ($categoriaFiltro || $busca): ?>
-                    <a href="eventos.php" class="filter-btn filter-btn-secondary">Limpar</a>
+                    <a href="eventos" class="filter-btn filter-btn-secondary">Limpar</a>
                 <?php endif; ?>
             </div>
         </form>
@@ -527,7 +527,7 @@ $categorias = $categoriaModel->getByTipo('evento');
                     <?php endif; ?>
                 </p>
                 <?php if ($categoriaFiltro || $busca): ?>
-                    <a href="eventos.php" class="btn-primary">Ver todos os eventos</a>
+                    <a href="eventos" class="btn-primary">Ver todos os eventos</a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
@@ -549,16 +549,16 @@ $categorias = $categoriaModel->getByTipo('evento');
             <div class="footer-col">
                 <h4>Arena</h4>
                 <ul>
-                    <li><a href="eventos.php">Agenda</a></li>
-                    <li><a href="index.php#espacos">Espaços</a></li>
-                    <li><a href="index.php#tour">Tour Virtual</a></li>
+                    <li><a href="eventos">Agenda</a></li>
+                    <li><a href="/#espacos">Espaços</a></li>
+                    <li><a href="/#tour">Tour Virtual</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Operação</h4>
                 <ul>
-                    <li><a href="index.php#contato">Contato Comercial</a></li>
+                    <li><a href="/#contato">Contato Comercial</a></li>
                     <li><a href="#">Manual do Evento</a></li>
                     <li><a href="#">Políticas de Acesso</a></li>
                 </ul>
