@@ -1,43 +1,93 @@
 <?php
 /**
  * Página de Eventos - Arena BRB
- * Listagem completa de eventos com filtros
+ * Listagem completa de eventos com filtros avançados
  */
 
 require_once 'config/database.php';
 require_once 'includes/db/Database.php';
 require_once 'includes/models/Evento.php';
 require_once 'includes/models/Categoria.php';
+require_once 'includes/models/Local.php';
 require_once 'includes/helpers/functions.php';
 
 $eventoModel = new Evento();
 $categoriaModel = new Categoria();
+$localModel = new Local();
 
 // Parâmetros de filtro
+$periodoFiltro = isset($_GET['periodo']) ? $_GET['periodo'] : 'semana'; // dia, semana, mes
 $categoriaFiltro = isset($_GET['categoria']) ? (int)$_GET['categoria'] : null;
-$busca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
+$localFiltro = isset($_GET['local']) ? (int)$_GET['local'] : null;
+$ordenacao = isset($_GET['ordem']) ? $_GET['ordem'] : 'data'; // data, nome
 
-// Paginação
-$itensPorPagina = 12;
-$paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$offset = ($paginaAtual - 1) * $itensPorPagina;
+// Buscar evento em destaque
+$eventoDestaque = $eventoModel->getDestaques(1);
+$eventoDestaque = !empty($eventoDestaque) ? $eventoDestaque[0] : null;
 
-// Preparar filtros
-$filtros = ['status' => 'publicado'];
+// Calcular período de datas
+$hoje = new DateTime();
+$dataInicio = clone $hoje;
+$dataFim = clone $hoje;
+
+switch ($periodoFiltro) {
+    case 'dia':
+        // Hoje
+        $dataFim->modify('+1 day');
+        break;
+    case 'semana':
+        // Próximos 7 dias
+        $dataFim->modify('+7 days');
+        break;
+    case 'mes':
+        // Próximos 30 dias
+        $dataFim->modify('+30 days');
+        break;
+}
+
+// Preparar filtros para busca
+$filtros = [
+    'status' => 'publicado',
+    'data_inicio' => $dataInicio->format('Y-m-d'),
+    'data_fim' => $dataFim->format('Y-m-d')
+];
+
 if ($categoriaFiltro) {
     $filtros['categoria_id'] = $categoriaFiltro;
 }
-if ($busca) {
-    $filtros['busca'] = $busca;
+
+if ($localFiltro) {
+    $filtros['local_id'] = $localFiltro;
 }
 
-// Buscar eventos e total
-$eventos = $eventoModel->getTodos($itensPorPagina, $offset, $filtros);
-$totalEventos = $eventoModel->contarTotal($filtros);
-$totalPaginas = ceil($totalEventos / $itensPorPagina);
+// Buscar eventos do período
+$eventos = $eventoModel->getTodos(null, 0, $filtros);
 
-// Buscar categorias para o filtro
+// Ordenação
+if ($ordenacao === 'nome') {
+    usort($eventos, function($a, $b) {
+        return strcmp($a['titulo'], $b['titulo']);
+    });
+} else {
+    // Já vem ordenado por data do banco
+}
+
+// Buscar categorias e locais para filtros
 $categorias = $categoriaModel->getByTipo('evento');
+$locais = $localModel->getTodosAtivos();
+
+// Meses em português
+$mesesPt = [
+    1 => 'JAN', 2 => 'FEV', 3 => 'MAR', 4 => 'ABR',
+    5 => 'MAI', 6 => 'JUN', 7 => 'JUL', 8 => 'AGO',
+    9 => 'SET', 10 => 'OUT', 11 => 'NOV', 12 => 'DEZ'
+];
+
+$mesesCompletos = [
+    1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril',
+    5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto',
+    9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'
+];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -62,14 +112,18 @@ $categorias = $categoriaModel->getByTipo('evento');
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        /* Estilos específicos da página de eventos */
+        /* ==============================================
+           PÁGINA DE EVENTOS - ESTILOS ESPECÍFICOS
+           ============================================== */
+
+        /* Header da Página */
         .page-header {
-            padding: 140px 0 60px;
+            padding: 140px 0 40px;
             text-align: center;
         }
 
         .page-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -78,45 +132,138 @@ $categorias = $categoriaModel->getByTipo('evento');
             background-clip: text;
         }
 
-        .page-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+        /* Evento em Destaque */
+        .featured-event-section {
+            max-width: var(--container-max);
+            margin: 0 auto 4rem;
+            padding: 0 var(--container-padding);
         }
 
+        .featured-event-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .featured-event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-event-image {
+            width: 400px;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .featured-event-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-event-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .featured-event-badges {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .featured-badge-category {
+            background: var(--primary);
+            color: white;
+        }
+
+        .featured-badge-date {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .featured-event-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .featured-event-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            width: fit-content;
+        }
+
+        .featured-event-cta:hover {
+            background: var(--primary-dark);
+            transform: translateX(4px);
+        }
+
+        /* Filtros */
         .filters-section {
             max-width: var(--container-max);
-            margin: 0 auto;
-            padding: 0 var(--container-padding) 3rem;
+            margin: 0 auto 3rem;
+            padding: 0 var(--container-padding);
         }
 
         .filters-container {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 2rem;
             border: 1px solid var(--border);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
         }
 
         .filter-group {
-            flex: 1;
-            min-width: 200px;
+            display: flex;
+            flex-direction: column;
         }
 
         .filter-label {
-            display: block;
             font-size: 0.875rem;
             font-weight: 600;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
 
-        .filter-select,
-        .filter-input {
+        .filter-select {
             width: 100%;
             padding: 0.75rem 1rem;
             background: var(--bg);
@@ -124,169 +271,255 @@ $categorias = $categoriaModel->getByTipo('evento');
             border-radius: 8px;
             color: var(--text);
             font-size: 0.9375rem;
+            font-weight: 500;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
-        .filter-select:focus,
-        .filter-input:focus {
+        .filter-select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
-        .filter-buttons {
-            display: flex;
-            gap: 0.75rem;
+        .filter-select option {
+            padding: 0.5rem;
         }
 
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9375rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-            white-space: nowrap;
-        }
-
-        .filter-btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .filter-btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-        }
-
-        .filter-btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-        }
-
-        .filter-btn-secondary:hover {
-            background: var(--card-bg);
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
+        /* Seção de Eventos */
         .events-list-section {
             max-width: var(--container-max);
             margin: 0 auto;
             padding: 0 var(--container-padding) 4rem;
         }
 
-        .results-info {
+        .section-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
         }
 
-        .results-info strong {
+        .section-title-bar h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
             color: var(--text);
         }
 
-        .no-results {
+        .section-title-bar .count {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        /* Grid de Eventos */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card de Evento */
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+
+        .event-img {
+            position: relative;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 0.75rem;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .event-date .day {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.25rem;
+        }
+
+        .event-cat {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .event-venue {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-venue svg {
+            flex-shrink: 0;
+        }
+
+        .event-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 1rem 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .event-price {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .event-price strong {
+            display: block;
+            font-size: 1.125rem;
+            color: var(--text);
+            margin-top: 0.25rem;
+        }
+
+        .event-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .event-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Estado Vazio */
+        .no-events {
             text-align: center;
             padding: 4rem 2rem;
         }
 
-        .no-results-icon {
+        .no-events-icon {
             width: 80px;
             height: 80px;
             margin: 0 auto 1.5rem;
             opacity: 0.3;
         }
 
-        .no-results h3 {
+        .no-events h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--text);
         }
 
-        .no-results p {
+        .no-events p {
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
 
-        /* Paginação */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
+        /* ==============================================
+           MOBILE - PLACEHOLDERS
+           ============================================== */
 
-        .pagination-btn {
-            min-width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            padding: 0 0.75rem;
-        }
+        @media (max-width: 1024px) {
+            /* TODO: Implementar versão mobile */
+            .featured-event-card {
+                grid-template-columns: 1fr;
+            }
 
-        .pagination-btn:hover:not(.active):not(.disabled) {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
+            .featured-event-image {
+                width: 100%;
+                height: 300px;
+            }
 
-        .pagination-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .pagination-btn.disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-header {
-                padding: 120px 0 40px;
+            .featured-event-content {
+                padding: 2rem;
             }
 
             .filters-container {
-                flex-direction: column;
-            }
-
-            .filter-group {
-                width: 100%;
-            }
-
-            .filter-buttons {
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .filter-btn {
-                width: 100%;
-            }
-
-            .events-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 120px 0 30px;
+            }
+
             .events-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -343,16 +576,66 @@ $categorias = $categoriaModel->getByTipo('evento');
 
     <!-- Page Header -->
     <section class="page-header">
-        <h1 class="page-title">Próximos Eventos</h1>
-        <p class="page-subtitle">Descubra shows, jogos e experiências imperdíveis na Arena BRB Mané Garrincha</p>
+        <h1 class="page-title">Eventos</h1>
     </section>
 
-    <!-- Filters Section -->
+    <!-- Evento em Destaque -->
+    <?php if ($eventoDestaque): ?>
+        <?php
+        $dataDestaque = new DateTime($eventoDestaque['data_evento']);
+        $diaDestaque = $dataDestaque->format('d');
+        $mesDestaque = $mesesCompletos[(int)$dataDestaque->format('m')];
+        $anoDestaque = $dataDestaque->format('Y');
+        ?>
+        <section class="featured-event-section">
+            <div class="featured-event-card">
+                <div class="featured-event-image" style="background-image: url('/<?= htmlspecialchars($eventoDestaque['imagem_destaque']) ?>');">
+                </div>
+                <div class="featured-event-content">
+                    <h2 class="featured-event-title"><?= htmlspecialchars($eventoDestaque['titulo']) ?></h2>
+                    <div class="featured-event-badges">
+                        <span class="featured-badge featured-badge-category" style="background: <?= htmlspecialchars($eventoDestaque['categoria_cor'] ?? '#8e44ad') ?>;">
+                            <?= htmlspecialchars($eventoDestaque['categoria_nome']) ?>
+                        </span>
+                        <span class="featured-badge featured-badge-date">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                <path d="M16 2v4M8 2v4M3 10h18"/>
+                            </svg>
+                            <?= $diaDestaque ?> de <?= $mesDestaque ?>, <?= $anoDestaque ?>
+                        </span>
+                    </div>
+                    <?php if ($eventoDestaque['descricao']): ?>
+                        <p class="featured-event-description">
+                            <?= htmlspecialchars($eventoDestaque['descricao']) ?>
+                        </p>
+                    <?php endif; ?>
+                    <a href="<?= htmlspecialchars($eventoDestaque['link_ingressos']) ?>" target="_blank" class="featured-event-cta">
+                        Comprar Ingressos
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <!-- Filtros -->
     <section class="filters-section">
         <form action="eventos" method="GET" class="filters-container">
             <div class="filter-group">
-                <label class="filter-label">Categoria</label>
-                <select name="categoria" class="filter-select">
+                <label class="filter-label">Período</label>
+                <select name="periodo" class="filter-select" onchange="this.form.submit()">
+                    <option value="dia" <?= $periodoFiltro === 'dia' ? 'selected' : '' ?>>Hoje</option>
+                    <option value="semana" <?= $periodoFiltro === 'semana' ? 'selected' : '' ?>>Esta Semana</option>
+                    <option value="mes" <?= $periodoFiltro === 'mes' ? 'selected' : '' ?>>Este Mês</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Tipo</label>
+                <select name="categoria" class="filter-select" onchange="this.form.submit()">
                     <option value="">Todas as categorias</option>
                     <?php foreach ($categorias as $cat): ?>
                         <option value="<?= $cat['id'] ?>" <?= $categoriaFiltro == $cat['id'] ? 'selected' : '' ?>>
@@ -363,61 +646,61 @@ $categorias = $categoriaModel->getByTipo('evento');
             </div>
 
             <div class="filter-group">
-                <label class="filter-label">Buscar</label>
-                <input
-                    type="text"
-                    name="busca"
-                    class="filter-input"
-                    placeholder="Nome do evento..."
-                    value="<?= htmlspecialchars($busca) ?>"
-                >
+                <label class="filter-label">Local</label>
+                <select name="local" class="filter-select" onchange="this.form.submit()">
+                    <option value="">Todos os locais</option>
+                    <?php foreach ($locais as $local): ?>
+                        <option value="<?= $local['id'] ?>" <?= $localFiltro == $local['id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($local['nome']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
-            <div class="filter-buttons">
-                <button type="submit" class="filter-btn filter-btn-primary">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 4px;">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
-                    Filtrar
-                </button>
-                <?php if ($categoriaFiltro || $busca): ?>
-                    <a href="eventos" class="filter-btn filter-btn-secondary">Limpar</a>
-                <?php endif; ?>
+            <div class="filter-group">
+                <label class="filter-label">Ordenar por</label>
+                <select name="ordem" class="filter-select" onchange="this.form.submit()">
+                    <option value="data" <?= $ordenacao === 'data' ? 'selected' : '' ?>>Data</option>
+                    <option value="nome" <?= $ordenacao === 'nome' ? 'selected' : '' ?>>Nome</option>
+                </select>
+            </div>
+
+            <div class="filter-group" style="display: flex; align-items: flex-end;">
+                <a href="eventos" class="filter-select" style="text-align: center; text-decoration: none; padding: 0.75rem; background: var(--border); cursor: pointer;">
+                    Limpar Filtros
+                </a>
             </div>
         </form>
     </section>
 
-    <!-- Events List Section -->
+    <!-- Lista de Eventos -->
     <section class="events-list-section">
-        <?php if ($totalEventos > 0): ?>
-            <div class="results-info">
-                Mostrando <strong><?= count($eventos) ?></strong> de <strong><?= $totalEventos ?></strong> evento(s)
-            </div>
+        <div class="section-title-bar">
+            <h2>
+                <?php
+                if ($periodoFiltro === 'dia') {
+                    echo 'Eventos de Hoje';
+                } elseif ($periodoFiltro === 'semana') {
+                    echo 'Eventos da Semana';
+                } else {
+                    echo 'Eventos do Mês';
+                }
+                ?>
+            </h2>
+            <span class="count"><?= count($eventos) ?> evento(s) encontrado(s)</span>
+        </div>
 
+        <?php if (!empty($eventos)): ?>
             <div class="events-grid">
                 <?php foreach ($eventos as $evento): ?>
                     <?php
-                    // Formatar data
                     $dataEvento = new DateTime($evento['data_evento']);
                     $dia = $dataEvento->format('d');
                     $mesNum = (int)$dataEvento->format('m');
-
-                    // Meses em português
-                    $mesesPt = [
-                        1 => 'JAN', 2 => 'FEV', 3 => 'MAR', 4 => 'ABR',
-                        5 => 'MAI', 6 => 'JUN', 7 => 'JUL', 8 => 'AGO',
-                        9 => 'SET', 10 => 'OUT', 11 => 'NOV', 12 => 'DEZ'
-                    ];
                     $mes = $mesesPt[$mesNum];
-
-                    // Status do evento
-                    $hoje = new DateTime();
-                    $diff = $hoje->diff($dataEvento);
-                    $diasRestantes = $diff->days;
                     ?>
                     <div class="event-card">
-                        <div class="event-img" style="background-image: url('/<?= htmlspecialchars($evento['imagem_destaque']) ?>'); background-size: cover; background-position: center;">
+                        <div class="event-img" style="background-image: url('/<?= htmlspecialchars($evento['imagem_destaque']) ?>');">
                             <div class="event-date">
                                 <span class="day"><?= $dia ?></span>
                                 <span class="month"><?= $mes ?></span>
@@ -436,99 +719,30 @@ $categorias = $categoriaModel->getByTipo('evento');
                                 <?= htmlspecialchars($evento['local_nome']) ?>
                             </p>
                             <?php if ($evento['descricao']): ?>
-                                <p class="event-desc" style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
-                                    <?= htmlspecialchars(substr($evento['descricao'], 0, 100)) ?>...
+                                <p class="event-desc">
+                                    <?= htmlspecialchars($evento['descricao']) ?>
                                 </p>
                             <?php endif; ?>
                             <div class="event-footer">
-                                <span class="event-price">A partir de <strong>R$ <?= number_format($evento['preco_minimo'], 2, ',', '.') ?></strong></span>
+                                <span class="event-price">
+                                    A partir de
+                                    <strong>R$ <?= number_format($evento['preco_minimo'], 2, ',', '.') ?></strong>
+                                </span>
                                 <a href="<?= htmlspecialchars($evento['link_ingressos']) ?>" target="_blank" class="event-btn">Comprar</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Paginação -->
-            <?php if ($totalPaginas > 1): ?>
-                <div class="pagination">
-                    <!-- Botão Anterior -->
-                    <?php if ($paginaAtual > 1): ?>
-                        <a href="?pagina=<?= $paginaAtual - 1 ?><?= $categoriaFiltro ? '&categoria='.$categoriaFiltro : '' ?><?= $busca ? '&busca='.urlencode($busca) : '' ?>" class="pagination-btn">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M15 18l-6-6 6-6"/>
-                            </svg>
-                        </a>
-                    <?php else: ?>
-                        <span class="pagination-btn disabled">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M15 18l-6-6 6-6"/>
-                            </svg>
-                        </span>
-                    <?php endif; ?>
-
-                    <!-- Números das páginas -->
-                    <?php
-                    $inicio = max(1, $paginaAtual - 2);
-                    $fim = min($totalPaginas, $paginaAtual + 2);
-
-                    if ($inicio > 1): ?>
-                        <a href="?pagina=1<?= $categoriaFiltro ? '&categoria='.$categoriaFiltro : '' ?><?= $busca ? '&busca='.urlencode($busca) : '' ?>" class="pagination-btn">1</a>
-                        <?php if ($inicio > 2): ?>
-                            <span class="pagination-btn disabled">...</span>
-                        <?php endif; ?>
-                    <?php endif; ?>
-
-                    <?php for ($i = $inicio; $i <= $fim; $i++): ?>
-                        <a href="?pagina=<?= $i ?><?= $categoriaFiltro ? '&categoria='.$categoriaFiltro : '' ?><?= $busca ? '&busca='.urlencode($busca) : '' ?>"
-                           class="pagination-btn <?= $i == $paginaAtual ? 'active' : '' ?>">
-                            <?= $i ?>
-                        </a>
-                    <?php endfor; ?>
-
-                    <?php if ($fim < $totalPaginas): ?>
-                        <?php if ($fim < $totalPaginas - 1): ?>
-                            <span class="pagination-btn disabled">...</span>
-                        <?php endif; ?>
-                        <a href="?pagina=<?= $totalPaginas ?><?= $categoriaFiltro ? '&categoria='.$categoriaFiltro : '' ?><?= $busca ? '&busca='.urlencode($busca) : '' ?>" class="pagination-btn"><?= $totalPaginas ?></a>
-                    <?php endif; ?>
-
-                    <!-- Botão Próximo -->
-                    <?php if ($paginaAtual < $totalPaginas): ?>
-                        <a href="?pagina=<?= $paginaAtual + 1 ?><?= $categoriaFiltro ? '&categoria='.$categoriaFiltro : '' ?><?= $busca ? '&busca='.urlencode($busca) : '' ?>" class="pagination-btn">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M9 18l6-6-6-6"/>
-                            </svg>
-                        </a>
-                    <?php else: ?>
-                        <span class="pagination-btn disabled">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M9 18l6-6-6-6"/>
-                            </svg>
-                        </span>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
-
         <?php else: ?>
-            <!-- Sem resultados -->
-            <div class="no-results">
-                <svg class="no-results-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <div class="no-events">
+                <svg class="no-events-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <rect x="3" y="4" width="18" height="18" rx="2"/>
                     <path d="M16 2v4M8 2v4M3 10h18"/>
-                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
                 </svg>
                 <h3>Nenhum evento encontrado</h3>
-                <p>
-                    <?php if ($categoriaFiltro || $busca): ?>
-                        Não encontramos eventos com os filtros selecionados. Tente ajustar sua busca.
-                    <?php else: ?>
-                        Novos eventos em breve! Fique ligado nas nossas redes sociais.
-                    <?php endif; ?>
-                </p>
-                <?php if ($categoriaFiltro || $busca): ?>
-                    <a href="eventos" class="btn-primary">Ver todos os eventos</a>
-                <?php endif; ?>
+                <p>Não há eventos programados para este período. Tente ajustar os filtros ou volte mais tarde.</p>
+                <a href="eventos" class="btn-primary">Ver todos os eventos</a>
             </div>
         <?php endif; ?>
     </section>
