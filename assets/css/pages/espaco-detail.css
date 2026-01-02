@@ -1,0 +1,236 @@
+/* ==============================================
+   PÁGINA INDIVIDUAL DE ESPAÇO
+   ============================================== */
+
+/* Hero Section */
+.espaco-hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 80px;
+    margin-bottom: 4rem;
+}
+
+.espaco-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.espaco-hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    z-index: 1;
+}
+
+.espaco-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.espaco-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 3rem var(--container-padding);
+    color: white;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+    opacity: 0.9;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.breadcrumb a:hover {
+    opacity: 0.7;
+}
+
+.espaco-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.espaco-hero-desc {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    max-width: 700px;
+}
+
+/* Info Section */
+.espaco-info {
+    max-width: var(--container-max);
+    margin: 0 auto 4rem;
+    padding: 0 var(--container-padding);
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+}
+
+.info-main h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.info-main h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 2.5rem 0 1rem;
+}
+
+.info-main p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.feature-list li {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+/* Info Sidebar */
+.info-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.info-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.info-card p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.specs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.spec-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.spec-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.contact-btn {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.contact-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+    .info-container {
+        grid-template-columns: 1fr;
+    }
+
+    .info-sidebar {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .espaco-hero {
+        min-height: 400px;
+        margin-top: 60px;
+    }
+
+    .espaco-hero-content {
+        padding: 2rem var(--container-padding);
+    }
+
+    .info-main h2 {
+        font-size: 1.75rem;
+    }
+
+    .info-main h3 {
+        font-size: 1.25rem;
+    }
+}
