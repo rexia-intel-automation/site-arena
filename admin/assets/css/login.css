@@ -1,0 +1,126 @@
+/* ==============================================
+   PÁGINA DE LOGIN - ADMIN
+   ============================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--admin-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    background: var(--white);
+    border-radius: 0;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: var(--admin-primary);
+    margin-bottom: 5px;
+}
+
+.logo p {
+    color: var(--gray-600);
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--black);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 0;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--admin-primary);
+    color: var(--white);
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-login:hover {
+    background: var(--admin-primary-dark);
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background: #fee;
+    color: #c33;
+    border: 1px solid #fcc;
+}
+
+.alert-success {
+    background: #efe;
+    color: #3c3;
+    border: 1px solid #cfc;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--gray-600);
+    font-size: 13px;
+}
+
+.credentials-hint {
+    background: var(--gray-50);
+    padding: 15px;
+    border-radius: 0;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--gray-600);
+    border-left: 3px solid var(--admin-primary);
+}
+
+.credentials-hint strong {
+    color: var(--black);
+}
