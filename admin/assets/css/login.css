@@ -1,6 +1,8 @@
 /* ==============================================
    PÁGINA DE LOGIN - ADMIN
    ============================================== */
+@import url('design-system.css');
+
 
 * {
     margin: 0;
@@ -124,3 +126,4 @@ body {
 .credentials-hint strong {
     color: var(--black);
 }
+
