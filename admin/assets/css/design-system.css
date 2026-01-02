@@ -1,0 +1,54 @@
+/* ====================================
+   DESIGN SYSTEM - ARENA BRB
+   Variáveis compartilhadas entre
+   Frontend e Admin
+   ==================================== */
+
+:root {
+    /* =====================================
+       CORES DA MARCA BRB (Oficial)
+       ===================================== */
+    --brb-blue: #0047BB;
+    --brb-dark: #002D7A;
+    --brb-light: #3373D9;
+    --brb-cyan: #00D4FF;
+
+    /* =====================================
+       CORES SEMÂNTICAS (Universais)
+       ===================================== */
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+
+    /* =====================================
+       ESCALA DE CINZAS (Padrão)
+       ===================================== */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+
+    /* =====================================
+       CORES BÁSICAS
+       ===================================== */
+    --white: #fbfbfc;
+    --black: #000000;
+
+    /* =====================================
+       ESPACAMENTOS (Layout)
+       ===================================== */
+    --container-max: 1200px;
+    --container-padding: 20px;
+
+    /* =====================================
+       TIPOGRAFIA
+       ===================================== */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
