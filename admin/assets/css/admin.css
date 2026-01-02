@@ -458,7 +458,7 @@ textarea.form-control {
 
 .btn-secondary {
     background: var(--gray-600);
-    color: #163e7d;
+    color: var(--admin-primary);
 }
 
 .btn-sm {
@@ -663,4 +663,5 @@ textarea.form-control {
 .justify-content-between { justify-content: space-between; }
 .gap-1 { gap: 0.5rem; }
 .gap-2 { gap: 1rem; }
+
 
