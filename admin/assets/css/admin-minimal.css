@@ -2,6 +2,8 @@
    ADMIN MINIMAL - Override para Design Minimalista
    Remove bordas arredondadas e efeitos pesados
    ============================================== */
+@import url('design-system.css');
+
 
 /* Remover todos os border-radius */
 .card,
@@ -70,3 +72,4 @@ textarea.form-control,
 .admin-sidebar {
     background: var(--primary) !important;
 }
+
