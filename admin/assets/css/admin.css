@@ -2,7 +2,7 @@
    ARENA BRB - PAINEL ADMINISTRATIVO
    Design Moderno e Responsivo
    ============================================ */
-
+@import url('design-system.css');
 
 /* Reset e Base */
 * {
@@ -674,6 +674,7 @@ textarea.form-control {
 .justify-content-between { justify-content: space-between; }
 .gap-1 { gap: 0.5rem; }
 .gap-2 { gap: 1rem; }
+
 
 
 
