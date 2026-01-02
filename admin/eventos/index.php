@@ -49,6 +49,7 @@ $mensagem = $_GET['msg'] ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -58,15 +59,15 @@ $mensagem = $_GET['msg'] ?? '';
         <main class="admin-content">
             <?php if ($mensagem === 'criado'): ?>
                 <div class="alert alert-success">
-                    ✅ Evento criado com sucesso!
+                    Evento criado com sucesso!
                 </div>
             <?php elseif ($mensagem === 'atualizado'): ?>
                 <div class="alert alert-success">
-                    ✅ Evento atualizado com sucesso!
+                    Evento atualizado com sucesso!
                 </div>
             <?php elseif ($mensagem === 'deletado'): ?>
                 <div class="alert alert-success">
-                    ✅ Evento deletado com sucesso!
+                    Evento deletado com sucesso!
                 </div>
             <?php endif; ?>
 
@@ -74,7 +75,7 @@ $mensagem = $_GET['msg'] ?? '';
                 <div class="card-header">
                     <h2 class="card-title">Eventos (<?= $totalEventos ?>)</h2>
                     <a href="/admin/eventos/criar.php" class="btn btn-primary">
-                        <span>➕</span> Novo Evento
+                        Novo Evento
                     </a>
                 </div>
 
@@ -139,14 +140,14 @@ $mensagem = $_GET['msg'] ?? '';
                                                      class="table-thumb">
                                             <?php else: ?>
                                                 <div style="width: 80px; height: 45px; background: #e5e7eb; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                                                    📅
+                                                    
                                                 </div>
                                             <?php endif; ?>
                                         </td>
                                         <td>
                                             <strong><?= htmlspecialchars($evento['titulo']) ?></strong>
                                             <?php if ($evento['destaque']): ?>
-                                                <span class="badge badge-warning" style="font-size: 0.7rem; margin-left: 0.5rem;">⭐ Destaque</span>
+                                                <span class="badge badge-warning" style="font-size: 0.7rem; margin-left: 0.5rem;">Destaque</span>
                                             <?php endif; ?>
                                         </td>
                                         <td>
@@ -170,18 +171,18 @@ $mensagem = $_GET['msg'] ?? '';
                                                 <a href="/admin/eventos/editar.php?id=<?= $evento['id'] ?>"
                                                    class="action-btn edit"
                                                    title="Editar">
-                                                    ✏️
+                                                    Editar
                                                 </a>
                                                 <a href="/eventos/<?= $evento['slug'] ?>"
                                                    class="action-btn view"
                                                    title="Ver no site"
                                                    target="_blank">
-                                                    👁️
+                                                    Ver
                                                 </a>
                                                 <button onclick="deletarEvento(<?= $evento['id'] ?>, '<?= htmlspecialchars($evento['titulo']) ?>')"
                                                         class="action-btn delete"
                                                         title="Deletar">
-                                                    🗑️
+                                                    Deletar
                                                 </button>
                                             </div>
                                         </td>

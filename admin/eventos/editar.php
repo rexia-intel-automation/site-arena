@@ -117,6 +117,7 @@ $csrfToken = gerarCSRFToken();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -183,7 +184,7 @@ $csrfToken = gerarCSRFToken();
                         <hr style="margin: 2rem 0;">
 
                         <!-- Data e Hora -->
-                        <h3 style="margin-bottom: 1rem; color: var(--gray-700);">📅 Data e Horário</h3>
+                        <h3 style="margin-bottom: 1rem; color: var(--gray-700);"> Data e Horário</h3>
 
                         <div class="form-row">
                             <div class="form-group">
@@ -354,7 +355,7 @@ $csrfToken = gerarCSRFToken();
                                            value="1"
                                            <?= ($dados['destaque'] ?? false) ? 'checked' : '' ?>
                                            style="width: 20px; height: 20px;">
-                                    <span style="font-weight: 600;">⭐ Destacar na home</span>
+                                    <span style="font-weight: 600;">Destacar na home</span>
                                 </label>
                                 <small class="form-help">Eventos em destaque aparecem na home do site</small>
                             </div>
@@ -365,7 +366,7 @@ $csrfToken = gerarCSRFToken();
                         <!-- Botões -->
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                ✅ Salvar Alterações
+                                Salvar Alterações
                             </button>
                             <a href="/admin/eventos/index.php" class="btn btn-secondary">
                                 ❌ Cancelar

@@ -2,6 +2,9 @@
    Arena BRB Mané Garrincha - Styles
    =================================== */
 
+/* Importar Design System Base */
+@import url('design-system.css');
+
 /* Reset & Base */
 * {
     margin: 0;
@@ -10,7 +13,7 @@
 }
 
 :root {
-    /* Cores oficiais BRB */
+    /* Cores oficiais BRB - mantidas para retrocompatibilidade */
     --brb-blue: #0047BB;
     --brb-dark: #002D7A;
     --brb-light: #3373D9;
@@ -29,6 +32,25 @@
     --light-surface: #FFFFFF;
     --light-text: #0F172A;
     --light-border: rgba(0, 71, 187, 0.1);
+
+    /* =====================================
+       FRONTEND - Dark Mode (Padrão)
+       ===================================== */
+    --primary: var(--brb-blue);
+    --primary-dark: var(--brb-dark);
+    --accent: var(--brb-cyan);
+
+    /* Backgrounds */
+    --bg: #04080F;
+    --surface: #0A1628;
+    --card-bg: rgba(255, 255, 255, 0.03);
+
+    /* Typography */
+    --text: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+
+    /* Borders */
+    --border: var(--glass-border);
 }
 
 html {
@@ -53,6 +75,14 @@ body {
 body.light-mode {
     background: linear-gradient(135deg, var(--light-bg) 0%, #E2E8F0 100%);
     color: var(--light-text);
+
+    /* Light Mode Overrides */
+    --bg: var(--gray-50);
+    --surface: var(--white);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --border: rgba(0, 71, 187, 0.1);
+    --text: var(--gray-900);
+    --text-secondary: var(--gray-600);
 }
 
 /* Background Effects */

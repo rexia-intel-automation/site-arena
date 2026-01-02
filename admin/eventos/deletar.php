@@ -66,6 +66,7 @@ $csrfToken = gerarCSRFToken();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -136,7 +137,7 @@ $csrfToken = gerarCSRFToken();
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-danger">
-                                🗑️ Sim, Deletar Evento
+                                Deletar Sim, Deletar Evento
                             </button>
                             <a href="/admin/eventos/index.php" class="btn btn-secondary">
                                 ❌ Cancelar
