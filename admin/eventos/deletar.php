@@ -65,6 +65,7 @@ $csrfToken = gerarCSRFToken();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
+    <link rel="stylesheet" href="assets/css/design-system.css">
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
     <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
