@@ -18,10 +18,10 @@
        ADMIN - Identidade Diferenciada
        ===================================== */
 
-    /* Cores primárias do Admin (Roxo/Púrpura) */
-    --admin-primary: #667eea;
-    --admin-primary-dark: #5568d3;
-    --admin-secondary: #764ba2;
+    /* Cores primárias do Admin (Azul Escuro/Azul Claro) */
+    --admin-primary: #163e7d;
+    --admin-primary-dark: #00acf0;
+    --admin-secondary: #00d4ff;
 
     /* Usar as cores do admin como primary no contexto admin */
     --primary: var(--admin-primary);
