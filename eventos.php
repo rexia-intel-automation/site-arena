@@ -139,9 +139,9 @@ $mesesCompletos = [
     <!-- Navigation -->
     <nav id="navbar">
         <ul class="nav-links nav-links-left">
-            <li><a href="/#inicio">Início</a></li>
+            <li><a href="/">Início</a></li>
             <li><a href="eventos" class="active">Eventos</a></li>
-            <li><a href="/#espacos">Espaços</a></li>
+            <li><a href="espacos">Espaços</a></li>
         </ul>
 
         <a href="/" class="logo">
@@ -150,9 +150,9 @@ $mesesCompletos = [
         </a>
 
         <ul class="nav-links nav-links-right">
-            <li><a href="/#noticias">Notícias</a></li>
-            <li><a href="/#tour">Tour</a></li>
-            <li><a href="/#contato">Contato</a></li>
+            <li><a href="noticias">Notícias</a></li>
+            <li><a href="tour">Tour</a></li>
+            <li><a href="contato">Contato</a></li>
         </ul>
 
         <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -364,15 +364,15 @@ $mesesCompletos = [
                 <h4>Arena</h4>
                 <ul>
                     <li><a href="eventos">Agenda</a></li>
-                    <li><a href="/#espacos">Espaços</a></li>
-                    <li><a href="/#tour">Tour Virtual</a></li>
+                    <li><a href="espacos">Espaços</a></li>
+                    <li><a href="tour">Tour Virtual</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Operação</h4>
                 <ul>
-                    <li><a href="/#contato">Contato Comercial</a></li>
+                    <li><a href="contato">Contato Comercial</a></li>
                     <li><a href="#">Manual do Evento</a></li>
                     <li><a href="#">Políticas de Acesso</a></li>
                 </ul>

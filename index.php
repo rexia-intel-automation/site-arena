@@ -75,22 +75,22 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
     <nav id="navbar">
         <!-- Menu Esquerdo -->
         <ul class="nav-links nav-links-left">
-            <li><a href="#inicio">Início</a></li>
+            <li><a href="/">Início</a></li>
             <li><a href="eventos">Eventos</a></li>
-            <li><a href="#espacos">Espaços</a></li>
+            <li><a href="espacos">Espaços</a></li>
         </ul>
 
         <!-- Logo Central -->
-        <a href="#inicio" class="logo">
+        <a href="/" class="logo">
             <img src="https://i.imgur.com/51FYi3K.png" alt="Arena BRB" class="logo-img logo-dark" id="logo-dark">
             <img src="https://i.imgur.com/qAvyaL0.png" alt="Arena BRB" class="logo-img logo-light" id="logo-light">
         </a>
 
         <!-- Menu Direito -->
         <ul class="nav-links nav-links-right">
-            <li><a href="#noticias">Notícias</a></li>
-            <li><a href="#tour">Tour</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="noticias">Notícias</a></li>
+            <li><a href="tour">Tour</a></li>
+            <li><a href="contato">Contato</a></li>
         </ul>
 
         <!-- Mobile Menu Toggle -->
@@ -417,15 +417,15 @@ $proximoEvento = !empty($proximosEventos) ? $proximosEventos[0] : null;
                 <h4>Arena</h4>
                 <ul>
                     <li><a href="eventos">Agenda</a></li>
-                    <li><a href="#espacos">Espaços</a></li>
-                    <li><a href="#tour">Tour Virtual</a></li>
+                    <li><a href="espacos">Espaços</a></li>
+                    <li><a href="tour">Tour Virtual</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Operação</h4>
                 <ul>
-                    <li><a href="#contato">Contato Comercial</a></li>
+                    <li><a href="contato">Contato Comercial</a></li>
                     <li><a href="#">Manual do Evento</a></li>
                     <li><a href="#">Políticas de Acesso</a></li>
                 </ul>
