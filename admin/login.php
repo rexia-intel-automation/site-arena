@@ -63,9 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Arena BRB Admin</title>
     
-    <link rel="stylesheet" href="admin/assets/css/design-system.css">
-    <link rel="stylesheet" href="admin/assets/css/admin-minimal.css"> 
-    <link rel="stylesheet" href="admin/assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/design-system.css">
+    <link rel="stylesheet" href="assets/css/admin-minimal.css"> 
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
     <div class="login-container">
