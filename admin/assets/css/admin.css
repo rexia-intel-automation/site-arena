@@ -3,6 +3,9 @@
    Design Moderno e Responsivo
    ============================================ */
 
+/* Importar Design System Base */
+@import url('../../assets/css/design-system.css');
+
 /* Reset e Base */
 * {
     margin: 0;
@@ -11,29 +14,49 @@
 }
 
 :root {
-    --primary: #667eea;
-    --primary-dark: #5568d3;
-    --secondary: #764ba2;
-    --success: #10b981;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-    --info: #3b82f6;
-    --dark: #1f2937;
-    --light: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
+    /* =====================================
+       ADMIN - Identidade Diferenciada
+       ===================================== */
+
+    /* Cores primárias do Admin (Roxo/Púrpura) */
+    --admin-primary: #667eea;
+    --admin-primary-dark: #5568d3;
+    --admin-secondary: #764ba2;
+
+    /* Usar as cores do admin como primary no contexto admin */
+    --primary: var(--admin-primary);
+    --primary-dark: var(--admin-primary-dark);
+    --secondary: var(--admin-secondary);
+
+    /* Backgrounds (Light mode only - Admin não tem dark mode) */
+    --bg: var(--white);
+    --surface: var(--white);
+    --card-bg: var(--white);
+
+    /* Typography */
+    --text: var(--black);
+    --text-secondary: var(--gray-600);
+
+    /* Borders */
+    --border: var(--gray-200);
+
+    /* Layout específico do Admin */
     --sidebar-width: 260px;
     --header-height: 70px;
+
+    /* Variáveis herdadas do design-system.css:
+       --success, --danger, --warning, --info
+       --gray-50 até --gray-900
+       --white, --black
+       --container-max, --container-padding
+       --font-family
+    */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--light);
-    color: var(--dark);
+    font-family: var(--font-family);
+    background: var(--gray-50);
+    color: var(--text);
     line-height: 1.6;
 }
 

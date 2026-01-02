@@ -79,6 +79,7 @@ if (isset($_GET['erro'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -230,17 +231,17 @@ if (isset($_GET['erro'])) {
                                                        class="btn btn-sm btn-secondary"
                                                        title="Visualizar"
                                                        target="_blank">
-                                                        👁️
+                                                        Ver
                                                     </a>
                                                     <a href="/admin/noticias/editar.php?id=<?= $post['id'] ?>"
                                                        class="btn btn-sm btn-primary"
                                                        title="Editar">
-                                                        ✏️
+                                                        Editar
                                                     </a>
                                                     <a href="/admin/noticias/deletar.php?id=<?= $post['id'] ?>"
                                                        class="btn btn-sm btn-danger"
                                                        title="Deletar">
-                                                        🗑️
+                                                        Deletar
                                                     </a>
                                                 </div>
                                             </td>

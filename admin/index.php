@@ -34,6 +34,7 @@ $ultimasPosts = $postModel->getPublicados(5);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Arena BRB Admin</title>
     <link rel="stylesheet" href="/admin/assets/css/admin.css">
+    <link rel="stylesheet" href="/admin/assets/css/admin-minimal.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -44,7 +45,6 @@ $ultimasPosts = $postModel->getPublicados(5);
         <main class="admin-content">
             <!-- Mensagem de Boas-vindas -->
             <div class="alert alert-success">
-                <span>👋</span>
                 <div>
                     <strong>Bem-vindo, <?= htmlspecialchars($ADMIN_NOME) ?>!</strong><br>
                     Último login: <?= date('d/m/Y às H:i') ?>
@@ -55,7 +55,7 @@ $ultimasPosts = $postModel->getPublicados(5);
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon primary">
-                        📅
+                        <!-- TODO: Integrar lucide-react icons -->
                     </div>
                     <div class="stat-info">
                         <h3><?= $totalEventos ?></h3>
@@ -65,7 +65,7 @@ $ultimasPosts = $postModel->getPublicados(5);
 
                 <div class="stat-card">
                     <div class="stat-icon warning">
-                        📝
+                        <!-- TODO: Integrar lucide-react icons -->
                     </div>
                     <div class="stat-info">
                         <h3><?= $totalEventosRascunho ?></h3>
@@ -75,7 +75,7 @@ $ultimasPosts = $postModel->getPublicados(5);
 
                 <div class="stat-card">
                     <div class="stat-icon success">
-                        📰
+                        <!-- TODO: Integrar lucide-react icons -->
                     </div>
                     <div class="stat-info">
                         <h3><?= $totalPosts ?></h3>
@@ -85,7 +85,7 @@ $ultimasPosts = $postModel->getPublicados(5);
 
                 <div class="stat-card">
                     <div class="stat-icon info">
-                        ✍️
+                        <!-- TODO: Integrar lucide-react icons -->
                     </div>
                     <div class="stat-info">
                         <h3><?= $totalPostsRascunho ?></h3>
@@ -102,16 +102,16 @@ $ultimasPosts = $postModel->getPublicados(5);
                 <div class="card-body">
                     <div class="d-flex gap-2">
                         <a href="/admin/eventos/criar.php" class="btn btn-primary">
-                            <span>➕</span> Novo Evento
+                            Novo Evento
                         </a>
                         <a href="/admin/noticias/criar.php" class="btn btn-success">
-                            <span>➕</span> Nova Notícia
+                            Nova Notícia
                         </a>
                         <a href="/admin/categorias/index.php" class="btn btn-secondary">
-                            <span>🏷️</span> Gerenciar Categorias
+                            Gerenciar Categorias
                         </a>
                         <a href="/admin/locais/index.php" class="btn btn-secondary">
-                            <span>📍</span> Gerenciar Locais
+                            Gerenciar Locais
                         </a>
                     </div>
                 </div>
