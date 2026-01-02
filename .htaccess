@@ -1,22 +1,29 @@
-# Arena BRB - Apache Configuration (ADMIN)
-
+# Configurações Gerais do Site
 Options -Indexes
 AddDefaultCharset UTF-8
 
-# Forçar MIME correto para CSS (quando o arquivo .css é servido como arquivo)
+# Forçar MIME correto para CSS
 AddType text/css .css
 
+# ======================================================================
+# 1. SEGURANÇA E PERFORMANCE (Cabeçalhos e Cache)
+# ======================================================================
 <IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
+    # Bloqueia iframes de outros sites (proteção contra Clickjacking)
     Header set X-Frame-Options "SAMEORIGIN"
+    # Proteção contra XSS
     Header set X-XSS-Protection "1; mode=block"
+    # Impede o navegador de tentar adivinhar o tipo de arquivo (Sniffing)
+    Header set X-Content-Type-Options "nosniff"
 </IfModule>
 
 <IfModule mod_deflate.c>
+    # Compactar arquivos para carregar mais rápido
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
 <IfModule mod_expires.c>
+    # Cache do navegador (para imagens, css, etc não serem baixados toda hora)
     ExpiresActive On
     ExpiresByType image/jpg "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
@@ -29,37 +36,27 @@ AddType text/css .css
     ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
+# ======================================================================
+# 2. ROTEAMENTO E URL AMIGÁVEL
+# ======================================================================
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /admin/
+    RewriteBase /
 
-    # 0) Assets do admin: nunca reescreva/roteie.
-    # Se o arquivo existir, Apache serve direto.
-    RewriteRule ^assets/ - [L]
+    # REGRA DE OURO: Se o arquivo ou diretório existe, NÃO FAÇA NADA.
+    # Isso garante que a pasta /admin, imagens, css e js funcionem sem loops.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-    # 0.1) Se pediram /admin/assets/... e NÃO existe arquivo/diretório, devolva 404
-    # (Evita cair no index.php e devolver HTML com MIME errado)
-    RewriteCond %{REQUEST_URI} ^/admin/assets/ [NC]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ - [R=404,L]
-
-    # 1) Remove trailing slash (exceto diretório real)
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [R=301,L]
-
-    # 2) Redirect /admin/*.php -> /admin/* (somente quando veio no request original)
-    RewriteCond %{THE_REQUEST} \s/+admin/([^\s?]+)\.php[?\s] [NC]
-    RewriteRule ^ %1 [R=301,L]
-
-    # 3) Resolve /admin/* -> /admin/*.php quando existir
+    # Tratamento de extensão .php (URL Amigável)
+    # Ex: Transforma /contato em /contato.php automaticamente
+    # Isso funciona inclusive para /admin/login (se virar /admin/login.php)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^([^.]+)$ $1.php [L]
+    RewriteRule ^(.*)$ $1.php [L]
 
-    # 4) Fallback do ADMIN (somente quando não é arquivo nem diretório)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [L]
+    # (Opcional) Forçar HTTPS
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
