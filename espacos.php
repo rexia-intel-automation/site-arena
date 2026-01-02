@@ -108,7 +108,7 @@
                             <span class="stat-label">Padrão</span>
                         </div>
                     </div>
-                    <a href="espacos/mane-garrincha" class="espaco-btn">Saiba Mais</a>
+                    <a href="lista-espacos/mane-garrincha" class="espaco-btn">Saiba Mais</a>
                 </div>
             </div>
 
@@ -135,7 +135,7 @@
                             <span class="stat-label">Inauguração</span>
                         </div>
                     </div>
-                    <a href="espacos/nilson-nelson" class="espaco-btn">Saiba Mais</a>
+                    <a href="lista-espacos/nilson-nelson" class="espaco-btn">Saiba Mais</a>
                 </div>
             </div>
 
@@ -162,7 +162,7 @@
                             <span class="stat-label">Espaços</span>
                         </div>
                     </div>
-                    <a href="espacos/complexo" class="espaco-btn">Saiba Mais</a>
+                    <a href="lista-espacos/complexo" class="espaco-btn">Saiba Mais</a>
                 </div>
             </div>
 
@@ -190,7 +190,7 @@
                             <span class="stat-label">Imersivo</span>
                         </div>
                     </div>
-                    <a href="espacos/esfera" class="espaco-btn">Saiba Mais</a>
+                    <a href="lista-espacos/esfera" class="espaco-btn">Saiba Mais</a>
                 </div>
             </div>
         </div>
