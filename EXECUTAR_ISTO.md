@@ -1,52 +1,55 @@
-# 🔧 CORREÇÃO URGENTE - Imagens dos Eventos
+# 🚨 EXECUTE ESTE SQL AGORA - Correção de Imagens
 
-## ⚠️ IMPORTANTE: Execute este SQL AGORA
+## Problema
 
-Os eventos existentes no banco de dados têm caminhos incorretos que impedem as imagens de aparecerem.
+As imagens não aparecem nos cards porque os caminhos no banco têm uma barra inicial `/` que causa erro.
 
-### Execute este SQL via phpMyAdmin ou linha de comando:
+**Erro no console:** `GET https://public/assets/... net::ERR_NAME_NOT_RESOLVED`
+
+## ✅ Solução Rápida
+
+### Execute este SQL no phpMyAdmin:
 
 ```sql
--- Corrigir eventos existentes
 UPDATE eventos
 SET imagem_destaque = TRIM(LEADING '/' FROM imagem_destaque)
 WHERE imagem_destaque LIKE '/%';
-
--- Corrigir notícias existentes
-UPDATE noticias
-SET imagem_destaque = TRIM(LEADING '/' FROM imagem_destaque)
-WHERE imagem_destaque LIKE '/%';
 ```
 
-### Ou execute o script PHP:
+### Ou copie o arquivo completo:
 
-```bash
-php fix-image-paths.php
-```
+Abra o arquivo `fix-eventos-images.sql` no phpMyAdmin e execute todo o conteúdo.
 
-## ✅ Após executar o SQL
+## 📋 Como executar no phpMyAdmin
 
-1. Recarregue a página de eventos
-2. As imagens devem aparecer nos cards
-3. Novos eventos criados já terão o caminho correto automaticamente
+1. Acesse phpMyAdmin
+2. Selecione o banco de dados `u568843907_arenabrbweb`
+3. Clique na aba **SQL**
+4. Cole o comando acima
+5. Clique em **Executar**
 
-## 📝 O que foi corrigido
+## ✅ Como verificar se funcionou
 
-- **Problema**: Caminhos salvos como `/public/assets/...` resultavam em `//public/assets/...` (URL inválida)
-- **Solução**: Removida a barra inicial, agora é `public/assets/...`
-- **Arquivos alterados**:
-  - `includes/helpers/upload.php` (linhas 115 e 237)
-  - `database/seeds/004_eventos_iniciais.sql` (linhas 37, 72, 107)
-
-## 🔍 Verificar se funcionou
-
-Após executar o SQL, verifique no banco:
+Execute este SELECT para ver os caminhos:
 
 ```sql
-SELECT id, titulo, imagem_destaque FROM eventos LIMIT 5;
+SELECT id, titulo, imagem_destaque
+FROM eventos
+WHERE imagem_destaque IS NOT NULL
+LIMIT 5;
 ```
 
-Os caminhos NÃO devem começar com `/`
+**Caminhos DEVEM estar assim:**
+- ✅ CORRETO: `public/assets/uploads/eventos/nome.jpg` (SEM barra inicial)
+- ❌ ERRADO: `/public/assets/uploads/eventos/nome.jpg` (COM barra inicial)
 
-**CORRETO**: `public/assets/uploads/eventos/nome.jpg`
-**ERRADO**: `/public/assets/uploads/eventos/nome.jpg`
+## 🎯 Após executar
+
+1. Recarregue a página de eventos
+2. As imagens aparecerão nos cards
+3. Novos eventos criados já terão o caminho correto automaticamente
+
+## ⚠️ Nota sobre Notícias
+
+Se você receber erro sobre tabela `noticias` não existir, ignore - é normal.
+O importante é corrigir os eventos primeiro.
