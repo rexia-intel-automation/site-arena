@@ -34,7 +34,7 @@ INSERT INTO eventos (
     'show',
     80.00,
     'https://www.bilheteriadigital.com/',
-    '/public/assets/uploads/eventos/turma-pagode.jpg',
+    'public/assets/uploads/eventos/turma-pagode.jpg',
     'publicado',
     TRUE,
     NOW()
@@ -69,7 +69,7 @@ INSERT INTO eventos (
     'basquete',
     50.00,
     'https://www.ticket360.com.br/',
-    '/public/assets/uploads/eventos/basquete-flamengo.jpg',
+    'public/assets/uploads/eventos/basquete-flamengo.jpg',
     'publicado',
     TRUE,
     NOW()
@@ -104,7 +104,7 @@ INSERT INTO eventos (
     'festival',
     120.00,
     'https://www.eventim.com.br/',
-    '/public/assets/uploads/eventos/festival-verao.jpg',
+    'public/assets/uploads/eventos/festival-verao.jpg',
     'publicado',
     TRUE,
     NOW()
