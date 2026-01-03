@@ -112,7 +112,7 @@ function uploadImagemEvento($file, $nomeEvento) {
     }
 
     // Retornar caminho relativo para o banco de dados
-    $relativePath = '/public/assets/uploads/eventos/' . $fileName;
+    $relativePath = 'public/assets/uploads/eventos/' . $fileName;
 
     $message = 'Upload realizado com sucesso';
     if ($width != EVENT_IMAGE_WIDTH || $height != EVENT_IMAGE_HEIGHT) {
@@ -234,7 +234,7 @@ function uploadImagemNoticia($file, $tituloNoticia) {
     }
 
     // Retornar caminho relativo para o banco de dados
-    $relativePath = '/public/assets/uploads/noticias/' . $fileName;
+    $relativePath = 'public/assets/uploads/noticias/' . $fileName;
 
     $message = 'Upload realizado com sucesso';
     if ($width != NEWS_IMAGE_WIDTH || $height != NEWS_IMAGE_HEIGHT) {
