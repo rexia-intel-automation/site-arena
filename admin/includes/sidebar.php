@@ -61,6 +61,11 @@ function isActive($page, $dir = null) {
                 <span class="nav-icon">📍</span>
                 <span>Locais</span>
             </a>
+
+            <a href="/admin/galeria/index.php" class="nav-link <?= isActive(null, 'galeria') ?>">
+                <span class="nav-icon">📸</span>
+                <span>Galeria</span>
+            </a>
         </div>
 
         <!-- Usuários -->
