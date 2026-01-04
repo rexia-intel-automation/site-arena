@@ -146,14 +146,14 @@
     <section class="legal-section">
         <h2 class="section-title">Informações Legais</h2>
         <div class="legal-grid">
-            <a href="#" class="legal-link">Termos e Condições de Uso</a>
-            <a href="#" class="legal-link">Política de Privacidade</a>
-            <a href="#" class="legal-link">Política de Cookies</a>
-            <a href="#" class="legal-link">Regulamento de Acesso</a>
-            <a href="mailto:imprensa@arenabrb.com.br" class="legal-link">Fale com a Imprensa</a>
-            <a href="#" class="legal-link">Mídia Kit e Materiais</a>
-            <a href="#" class="legal-link">Trabalhe Conosco</a>
-            <a href="#" class="legal-link">Código de Conduta</a>
+            <a href="termos-uso" class="legal-link">Termos e Condições de Uso</a>
+            <a href="politica-privacidade" class="legal-link">Política de Privacidade</a>
+            <a href="politica-cookies" class="legal-link">Política de Cookies</a>
+            <a href="regulamento-acesso" class="legal-link">Regulamento de Acesso</a>
+            <a href="imprensa" class="legal-link">Fale com a Imprensa</a>
+            <a href="midia-kit" class="legal-link">Mídia Kit e Materiais</a>
+            <a href="trabalhe-conosco" class="legal-link">Trabalhe Conosco</a>
+            <a href="codigo-conduta" class="legal-link">Código de Conduta</a>
         </div>
     </section>
 
