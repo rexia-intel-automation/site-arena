@@ -8,6 +8,40 @@ require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/includes/db/Database.php';
 require_once __DIR__ . '/includes/models/Post.php';
 
+/**
+ * Função helper para formatar datas em português
+ */
+function formatarDataPT($data) {
+    $meses = [
+        1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril',
+        5 => 'maio', 6 => 'junho', 7 => 'julho', 8 => 'agosto',
+        9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+    ];
+
+    $timestamp = is_numeric($data) ? $data : strtotime($data);
+    $dia = date('d', $timestamp);
+    $mes = $meses[(int)date('n', $timestamp)];
+    $ano = date('Y', $timestamp);
+
+    return "$dia de $mes de $ano";
+}
+
+/**
+ * Função helper para obter mês/ano atual em português
+ */
+function mesAnoAtualPT() {
+    $meses = [
+        1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril',
+        5 => 'maio', 6 => 'junho', 7 => 'julho', 8 => 'agosto',
+        9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+    ];
+
+    $mes = $meses[(int)date('n')];
+    $ano = date('Y');
+
+    return ucfirst($mes) . ' de ' . $ano;
+}
+
 // Inicializar o model de Post
 $postModel = new Post();
 
@@ -18,16 +52,11 @@ $noticiaDestaque = null;
 if (!empty($destaques)) {
     $destaque = $destaques[0];
 
-    // Formatar data em português
-    setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
-    $dataPublicacao = strtotime($destaque['publicado_em']);
-    $dataFormatada = strftime('%d de %B de %Y', $dataPublicacao);
-
     $noticiaDestaque = [
         'id' => $destaque['id'],
         'titulo' => $destaque['titulo'],
         'descricao' => $destaque['resumo'] ?? substr(strip_tags($destaque['conteudo']), 0, 200) . '...',
-        'data' => ucfirst($dataFormatada),
+        'data' => ucfirst(formatarDataPT($destaque['publicado_em'])),
         'categoria' => $destaque['categoria_nome'] ?? 'Notícias',
         'imagem' => $destaque['imagem_destaque'] ?? 'https://i.imgur.com/BPnRSBE.jpeg',
         'slug' => $destaque['slug']
@@ -51,14 +80,10 @@ $posts = $postModel->getPublicados(6);
 $noticiasDoMes = [];
 
 foreach ($posts as $post) {
-    setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
-    $dataPublicacao = strtotime($post['publicado_em']);
-    $dataFormatada = strftime('%d de %B de %Y', $dataPublicacao);
-
     $noticiasDoMes[] = [
         'id' => $post['id'],
         'titulo' => $post['titulo'],
-        'data' => ucfirst($dataFormatada),
+        'data' => ucfirst(formatarDataPT($post['publicado_em'])),
         'categoria' => $post['categoria_nome'] ?? 'Notícias',
         'imagem' => $post['imagem_destaque'] ?? null,
         'slug' => $post['slug']
@@ -66,7 +91,7 @@ foreach ($posts as $post) {
 }
 
 // Pegar o nome do mês atual em português
-$mesAtual = ucfirst(strftime('%B de %Y'));
+$mesAtual = mesAnoAtualPT();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
