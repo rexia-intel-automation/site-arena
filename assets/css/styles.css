@@ -696,6 +696,7 @@ body.light-mode .float-info p {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: 5%;
     margin-bottom: 50px;
 }
 
