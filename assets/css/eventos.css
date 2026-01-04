@@ -429,4 +429,9 @@
     .events-grid {
         grid-template-columns: 1fr;
     }
+
+       /* .event-img - original linha 391 do styles.css */
+    .event-img {
+        height: auto;
+    }
 }
