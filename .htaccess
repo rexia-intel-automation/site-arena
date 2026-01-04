@@ -60,3 +60,11 @@ AddType text/css .css
     # RewriteCond %{HTTPS} off
     # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+# ======================================================================
+# 3. PÁGINAS DE ERRO PERSONALIZADAS
+# ======================================================================
+ErrorDocument 403 /404.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+ErrorDocument 503 /500.php
