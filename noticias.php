@@ -3,47 +3,70 @@
  * Página de Notícias - Arena BRB
  */
 
-// Placeholder data - em produção virá do banco de dados
-$noticiaDestaque = [
-    'titulo' => 'Arena BRB anuncia temporada de shows internacionais para 2026',
-    'descricao' => 'Grandes nomes da música mundial confirmam apresentações no complexo. Line-up traz artistas de diversos gêneros e promete movimentar a capital federal.',
-    'data' => '15 de Dezembro de 2025',
-    'categoria' => 'Shows',
-    'imagem' => 'https://i.imgur.com/BPnRSBE.jpeg'
-];
+// Incluir configurações e classes necessárias
+require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/includes/db/Database.php';
+require_once __DIR__ . '/includes/models/Post.php';
 
-$noticiasDoMes = [
-    [
-        'titulo' => 'Final do Campeonato Brasiliense será na Arena BRB',
-        'data' => '12 de Dezembro de 2025',
-        'categoria' => 'Esportes'
-    ],
-    [
-        'titulo' => 'Novo espaço para eventos corporativos inaugurado',
-        'data' => '10 de Dezembro de 2025',
-        'categoria' => 'Infraestrutura'
-    ],
-    [
-        'titulo' => 'Arena BRB recebe certificação de sustentabilidade',
-        'data' => '08 de Dezembro de 2025',
-        'categoria' => 'Sustentabilidade'
-    ],
-    [
-        'titulo' => 'Festival de Música Eletrônica confirmado para março',
-        'data' => '05 de Dezembro de 2025',
-        'categoria' => 'Eventos'
-    ],
-    [
-        'titulo' => 'Tour virtual 360° já disponível no site',
-        'data' => '03 de Dezembro de 2025',
-        'categoria' => 'Tecnologia'
-    ],
-    [
-        'titulo' => 'Arena BRB completa 12 anos de história',
-        'data' => '01 de Dezembro de 2025',
-        'categoria' => 'Institucional'
-    ]
-];
+// Inicializar o model de Post
+$postModel = new Post();
+
+// Buscar notícia em destaque
+$destaques = $postModel->getDestaques(1);
+$noticiaDestaque = null;
+
+if (!empty($destaques)) {
+    $destaque = $destaques[0];
+
+    // Formatar data em português
+    setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
+    $dataPublicacao = strtotime($destaque['publicado_em']);
+    $dataFormatada = strftime('%d de %B de %Y', $dataPublicacao);
+
+    $noticiaDestaque = [
+        'id' => $destaque['id'],
+        'titulo' => $destaque['titulo'],
+        'descricao' => $destaque['resumo'] ?? substr(strip_tags($destaque['conteudo']), 0, 200) . '...',
+        'data' => ucfirst($dataFormatada),
+        'categoria' => $destaque['categoria_nome'] ?? 'Notícias',
+        'imagem' => $destaque['imagem_destaque'] ?? 'https://i.imgur.com/BPnRSBE.jpeg',
+        'slug' => $destaque['slug']
+    ];
+}
+
+// Caso não tenha notícia em destaque, usar placeholder
+if (!$noticiaDestaque) {
+    $noticiaDestaque = [
+        'titulo' => 'Arena BRB anuncia temporada de shows internacionais para 2026',
+        'descricao' => 'Grandes nomes da música mundial confirmam apresentações no complexo. Line-up traz artistas de diversos gêneros e promete movimentar a capital federal.',
+        'data' => '15 de Dezembro de 2025',
+        'categoria' => 'Shows',
+        'imagem' => 'https://i.imgur.com/BPnRSBE.jpeg',
+        'slug' => '#'
+    ];
+}
+
+// Buscar notícias recentes (últimas 6 notícias publicadas)
+$posts = $postModel->getPublicados(6);
+$noticiasDoMes = [];
+
+foreach ($posts as $post) {
+    setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
+    $dataPublicacao = strtotime($post['publicado_em']);
+    $dataFormatada = strftime('%d de %B de %Y', $dataPublicacao);
+
+    $noticiasDoMes[] = [
+        'id' => $post['id'],
+        'titulo' => $post['titulo'],
+        'data' => ucfirst($dataFormatada),
+        'categoria' => $post['categoria_nome'] ?? 'Notícias',
+        'imagem' => $post['imagem_destaque'] ?? null,
+        'slug' => $post['slug']
+    ];
+}
+
+// Pegar o nome do mês atual em português
+$mesAtual = ucfirst(strftime('%B de %Y'));
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -106,7 +129,7 @@ $noticiasDoMes = [
                 <span class="featured-news-date"><?= htmlspecialchars($noticiaDestaque['data']) ?></span>
                 <h2 class="featured-news-title"><?= htmlspecialchars($noticiaDestaque['titulo']) ?></h2>
                 <p class="featured-news-desc"><?= htmlspecialchars($noticiaDestaque['descricao']) ?></p>
-                <a href="#" class="featured-news-btn">Ler Matéria Completa</a>
+                <a href="noticia?slug=<?= htmlspecialchars($noticiaDestaque['slug']) ?>" class="featured-news-btn">Ler Matéria Completa</a>
             </div>
         </div>
     </section>
@@ -114,28 +137,36 @@ $noticiasDoMes = [
     <!-- Notícias do Mês -->
     <section class="news-month-section">
         <div class="section-header">
-            <h2 class="section-title">Notícias do Mês</h2>
-            <p class="section-subtitle">Dezembro de 2025</p>
+            <h2 class="section-title">Notícias Recentes</h2>
+            <p class="section-subtitle"><?= htmlspecialchars($mesAtual) ?></p>
         </div>
 
         <div class="news-grid">
-            <?php foreach ($noticiasDoMes as $noticia): ?>
-            <div class="news-card">
-                <div class="news-card-image">
-                    <div class="placeholder-icon">
-                        <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
+            <?php if (empty($noticiasDoMes)): ?>
+                <p style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-secondary);">
+                    Nenhuma notícia publicada ainda. Em breve novidades!
+                </p>
+            <?php else: ?>
+                <?php foreach ($noticiasDoMes as $noticia): ?>
+                <div class="news-card">
+                    <div class="news-card-image" <?php if (!empty($noticia['imagem'])): ?>style="background-image: url('<?= htmlspecialchars($noticia['imagem']) ?>');"<?php endif; ?>>
+                        <?php if (empty($noticia['imagem'])): ?>
+                        <div class="placeholder-icon">
+                            <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-card-category"><?= htmlspecialchars($noticia['categoria']) ?></span>
+                        <h3 class="news-card-title"><?= htmlspecialchars($noticia['titulo']) ?></h3>
+                        <span class="news-card-date"><?= htmlspecialchars($noticia['data']) ?></span>
+                        <a href="noticia?slug=<?= htmlspecialchars($noticia['slug']) ?>" class="news-card-link">Leia mais</a>
                     </div>
                 </div>
-                <div class="news-card-content">
-                    <span class="news-card-category"><?= htmlspecialchars($noticia['categoria']) ?></span>
-                    <h3 class="news-card-title"><?= htmlspecialchars($noticia['titulo']) ?></h3>
-                    <span class="news-card-date"><?= htmlspecialchars($noticia['data']) ?></span>
-                    <a href="#" class="news-card-link">Leia mais</a>
-                </div>
-            </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </section>
 
